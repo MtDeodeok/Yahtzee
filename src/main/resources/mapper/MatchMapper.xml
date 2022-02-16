@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.yahtzee.dao.MatchDAO">
+	
+	<!-- 신규유저 -->
+	<insert id="insertMember" parameterType="com.project.yahtzee.vo.MemberVO">
+		insert into
+		matchTable (idx, userID)
+		values (#{idx}, #{userID})
+	</insert>
+	
+	<!-- 랭킹 출력 -->
+	<select id="ranking" resultType="com.project.yahtzee.vo.MatchVO">
+		select @ranking:=@ranking+1 as ranking, m.* 
+		from matchTable as m, (select @ranking:=0) TMP
+		order by win desc, lose, draw, score desc, lastWinTime
+	</select>
+
+	<!-- 게임 승리 -->
+	<update id="updateWin" parameterType="com.project.yahtzee.vo.MatchVO">
+		update matchTable set
+		userWin=match.userWin+1, userScore=match.userScore+1, lastWinTime = #{lastWinTime}
+		where userID = #{userID}
+	</update>
+	
+	<!-- 게임 패배 -->
+	<update id="updateLose" parameterType="String">
+		update matchTable set
+		userLose=matchTable.userLose+1, userScore=matchTable.userScore+1
+		where userID = #{userID}
+	</update>
+	
+	<!-- 게임 무승부 -->
+	<update id="updateDraw" parameterType="String">
+		update match set
+		userDraw=matchTable.userDraw+1, userScore=matchTable.userScore+1
+		where userID = #{userID}
+	</update>
+	
+</mapper>
