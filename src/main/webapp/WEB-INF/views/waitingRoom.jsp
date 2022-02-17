@@ -6,8 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>대기실</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 	function join(bangID) {
 		var href = "/webSocket?bang_id=" + bangID;
@@ -24,8 +23,8 @@
 			<input type="radio" name="game" value="야찌">야찌
 			<input type="radio" name="game" value="야르">야르
 		</div>
-		<input type="text" name="gameRoomName">
-		<button type="submit">확인</button>
+		방이름<input type="text" name="gameRoomName">
+		<button type="submit">만들기</button>
 	</form>
 	
 	<hr>

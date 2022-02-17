@@ -5,7 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<c:choose>
+	<c:when test="${sessionScope.state eq '신규'}">
+		<title>가입</title>
+	</c:when>
+	<c:otherwise>
+		<title>로그인</title>
+	</c:otherwise>
+</c:choose>
 </head>
 <body>
 	<form id='joiner' action="joiner" method='post'>
@@ -28,7 +35,7 @@
 				<input type='text' id='userNickName' name='userNickName' value=${sessionScope.loginMember.getUserNickName()}>
 				<div>
 					<button type='submit'>입장</button>
-					<button type='button' onclick="location.href='login.jsp'">나가기</button>
+					<button type='button' onclick="location.href='/login'">나가기</button>
 				</div>
 			</c:otherwise>
 		</c:choose>

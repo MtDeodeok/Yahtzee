@@ -113,7 +113,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 				Map<String, Object> mapSessionList = sessionList.get(i);
 				String bang_id = (String) mapSessionList.get("bang_id");
 				WebSocketSession sess = (WebSocketSession) mapSessionList.get("session");
-
+				dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 				if (bang_id.equals(mapReceive.get("bang_id"))) {
 					Map<String, String> mapToSend = new HashMap<String, String>();
 					mapToSend.put("bang_id", bang_id);
@@ -157,7 +157,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 			Map<String, Object> mapSessionList = sessionList.get(i);
 			String bang_id = (String) mapSessionList.get("bang_id");
 			WebSocketSession sess = (WebSocketSession) mapSessionList.get("session");
-
+			dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 			if (bang_id.equals(now_bang_id)) {
 				Map<String, String> mapToSend = new HashMap<String, String>();
 				mapToSend.put("bang_id", bang_id);

@@ -54,7 +54,7 @@ public class pageController {
 		int bangID = gameRoom.getId();
 		roomList.add(bangID-1,gameRoomName);
 		
-		System.out.println("crgame : "+game);
+		System.out.println("CreateGame : "+game);
 		return "redirect:/webSocket?bang_id="+bangID;
 	}
 }
