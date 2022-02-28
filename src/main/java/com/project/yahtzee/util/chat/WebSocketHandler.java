@@ -71,7 +71,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 		switch (mapReceive.get("cmd")) {
 
 		// CLIENT 입장
-		case "CMD_ENTER":
+		case "GAME_ROOM_ENTER":
 			// 세션 리스트에 저장
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("bang_id", mapReceive.get("bang_id"));
@@ -92,11 +92,9 @@ public class WebSocketHandler extends TextWebSocketHandler {
 				if (bang_id.equals(mapReceive.get("bang_id"))) {
 					Map<String, String> mapToSend = new HashMap<String, String>();
 					mapToSend.put("bang_id", bang_id);
-					mapToSend.put("cmd", "CMD_ENTER");
-					mapToSend.put("msg", joinUser + "님이 입장 했습니다. "+dateTime);
-					
+					mapToSend.put("cmd", "GAME_ROOM_ENTER");
+					mapToSend.put("msg", ConvertInputValue(joinUser) + "님이 입장 했습니다. "+dateTime);
 					String jsonStr = objectMapper.writeValueAsString(mapToSend);
-					
 					sess.sendMessage(new TextMessage(jsonStr));
 				}
 			}
@@ -106,7 +104,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 			break;
 
 		// CLIENT 메세지
-		case "CMD_MSG_SEND":
+		case "USER_CHAT_MSG":
 			// 같은 채팅방에 메세지 전송
 			String sendUser = userNickName(session);;
 			for (int i = 0; i < sessionList.size(); i++) {
@@ -117,7 +115,8 @@ public class WebSocketHandler extends TextWebSocketHandler {
 				if (bang_id.equals(mapReceive.get("bang_id"))) {
 					Map<String, String> mapToSend = new HashMap<String, String>();
 					mapToSend.put("bang_id", bang_id);
-					mapToSend.put("cmd", "CMD_MSG_SEND");
+					// TODO:: #5
+					mapToSend.put("cmd", "USER_CHAT_MSG");
 					mapToSend.put("msg", sendUser + " : " + ConvertInputValue(mapReceive.get("msg"))+" "+dateTime);
 					String jsonStr = objectMapper.writeValueAsString(mapToSend);
 					sess.sendMessage(new TextMessage(jsonStr));
@@ -161,8 +160,8 @@ public class WebSocketHandler extends TextWebSocketHandler {
 			if (bang_id.equals(now_bang_id)) {
 				Map<String, String> mapToSend = new HashMap<String, String>();
 				mapToSend.put("bang_id", bang_id);
-				mapToSend.put("cmd", "CMD_EXIT");
-				mapToSend.put("msg", disconnectUser + "님이 퇴장 했습니다. "+dateTime);
+				mapToSend.put("cmd", "GAME_ROOM_EXIT");
+				mapToSend.put("msg", ConvertInputValue(disconnectUser)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      + "님이 퇴장 했습니다. "+dateTime);
 
 				String jsonStr = objectMapper.writeValueAsString(mapToSend);
 				sess.sendMessage(new TextMessage(jsonStr));

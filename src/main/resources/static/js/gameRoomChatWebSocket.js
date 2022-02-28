@@ -1,29 +1,29 @@
 var webSocket = {
 	init: function(param) {
+		console.log(param);
 		this._url = param.url;
 		this._initSocket();
 	},
 	sendChat: function() {
 		console.log('${param.bang_id}');
-		this._sendMessage('${param.bang_id}', 'CMD_MSG_SEND', $('#message').val());
+		this._sendMessage('${param.bang_id}', 'USER_CHAT_MSG', $('#message').val());
 		$('#message').val('');
 	},
 	sendEnter: function() {
-		this._sendMessage('${param.bang_id}', 'CMD_ENTER', $('#message').val());
+		this._sendMessage('${param.bang_id}', 'GAME_ROOM_ENTER', $('#message').val());
 		$('#message').val('');
 	},
 	receiveMessage: function(msgData) {
 		console.log(msgData);
-		// 정의된 CMD 코드에 따라서 분기 처리
-		if (msgData.cmd == 'CMD_MSG_SEND') {
+		if (msgData.cmd == 'USER_CHAT_MSG') {
 			$('#divChatData').append('<div>' + msgData.msg + '</div>');
 		}
 		// 입장
-		else if (msgData.cmd == 'CMD_ENTER') {
+		else if (msgData.cmd == 'GAME_ROOM_ENTER') {
 			$('#divChatData').append('<div>' + msgData.msg + '</div>');
 		}
 		// 퇴장
-		else if (msgData.cmd == 'CMD_EXIT') {
+		else if (msgData.cmd == 'GAME_ROOM_EXIT') {
 			$('#divChatData').append('<div>' + msgData.msg + '</div>');
 		}
 	},
@@ -55,3 +55,7 @@ var webSocket = {
 		this._socket.send(jsonData);
 	}
 };
+
+$(window).on('load', function() {
+	webSocket.init({ url: "/webSocket" });
+});
