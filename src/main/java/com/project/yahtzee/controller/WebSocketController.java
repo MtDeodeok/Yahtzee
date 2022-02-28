@@ -41,22 +41,16 @@ public class WebSocketController {
 			if(memberservice.memberCheck(member)==0) {
 				if(memberservice.userIDCheck(member.getUserID())==0) {
 					memberservice.insertMember(member);
-					MemberVO memberVO = memberservice.callMember(member);
-					matchservice.insertMember(memberVO);
+					matchservice.insertMember(memberservice.callMember(member));
 					handler.loginMember(member);
 					return "redirect:waitingRoom";
-				} else {
-					return "/";
 				}
 			} else if(memberservice.memberCheck(member)==1){
 				memberservice.updateNickName(member);
 				session.setAttribute("loginMember",memberservice.callMember(member));
 				handler.loginMember(member);
 				return "redirect:waitingRoom";
-			} else {
-				return "/";
 			}
-			
 		}
 		return "/";
 	} 
@@ -70,7 +64,6 @@ public class WebSocketController {
 			member = memberservice.callMember(member);
 			session.setAttribute("loginMember", member);
 			session.setAttribute("state", "멤버");
-			
 		}
 		return "join";
 	}

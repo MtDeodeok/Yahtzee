@@ -30,7 +30,6 @@ public class NaverOauth implements SocialOauth {
 	private final String NAVER_SNS_STATE = "STATE_STRING";
 	
 	private final MemberVO memberVO = new MemberVO();
-	//private final WebSocketHandler handler = new WebSocketHandler();
 	
 	@Override
 	public String getOauthRedirectURL() {

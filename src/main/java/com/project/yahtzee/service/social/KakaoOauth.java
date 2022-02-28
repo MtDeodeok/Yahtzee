@@ -28,7 +28,6 @@ public class KakaoOauth implements SocialOauth {
 	private final String KAKAO_SNS_PROFILE_URL = "https://kapi.kakao.com/v2/user/me";
 
 	private final MemberVO memberVO = new MemberVO();
-	//private final WebSocketHandler handler = new WebSocketHandler();
 	
 	@Override
 	public String getOauthRedirectURL() {
@@ -80,8 +79,6 @@ public class KakaoOauth implements SocialOauth {
 			JsonParser parser = new JsonParser();
 			JsonElement element = parser.parse(result);
 
-			//System.out.println("result : " + result);
-
 			access_Token = element.getAsJsonObject().get("access_token").getAsString();
 			if (conn.getResponseCode() == 200) {
 				return access_Token;
@@ -114,8 +111,6 @@ public class KakaoOauth implements SocialOauth {
 				while ((line = br.readLine()) != null) {
 					result += line;
 				}
-
-				//System.out.println("result : " + result);
 
 				JsonParser parser = new JsonParser();
 				JsonElement element = parser.parse(result);
