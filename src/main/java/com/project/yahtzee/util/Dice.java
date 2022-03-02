@@ -23,7 +23,7 @@ public class Dice {
 
 	// 주사위List
 	// 주사위 5개에 랜덤 주사위 값을 집어 넣는 부분
-	private List<Integer> firstDiceList() {
+	public List<Integer> firstDiceList() {
 
 		diceList.add(0, randomDice());
 		diceList.add(1, randomDice());
@@ -36,11 +36,24 @@ public class Dice {
 	}
 
 	// 주사위 고정
-	// 고정값을 2진수로 받아와서 체크
-	private List<Integer> fixedDiceList(int num) {
-		
+	// 고정값을 2진수로 받아와서
+	// 고정값을 제외한 나머지 값 굴리기
 
-		System.out.println("diceClass diceList : " + diceList);
-		return diceList;
+	public void fixedDice(int num) {
+		int[] dices_lock = new int[5];
+		
+		// 다이스 고정 위치 설정
+		for(int i=0;i<dices_lock.length;i++) {
+			dices_lock[i]=num%2;
+			num /= 2;
+			
+			if(dices_lock[i]!=1) {
+				diceList.set(i, randomDice());
+			}
+			
+			System.out.println("dices_lock["+i+"] : "+dices_lock[i]);
+		};
+		System.out.println("diceList : " + diceList);
 	}
+	
 }
