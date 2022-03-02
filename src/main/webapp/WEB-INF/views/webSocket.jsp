@@ -9,11 +9,6 @@
 	<script src="/js/jquery-3.5.1.min.js"></script>
 	<script src="/js/sockjs.js"></script>
 	<script src="/js/gameRoomChatWebSocket.js"></script>
-	<script type="text/javascript">
-		$(window).on('load', function() {
-			webSocket.init({ url: '<c:url value="/webSocket" />' });
-		});
-	</script>
 </head>
 <body>
 	<div id="gameRoom">

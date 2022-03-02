@@ -4,6 +4,14 @@ var webSocket = {
 		this._url = param.url;
 		this._initSocket();
 	},
+	gameStart: function(){
+		console.log('GameStart');
+		this._gameStart('${param.bang_id}', 'GAME_START');
+	},
+	rollingDice: function() {
+		console.log('testDice call!');
+		this._fixedDiceRolling('${param.bang_id}', 'FIXED_DICE_ROLLING',11);	
+	},
 	sendChat: function() {
 		console.log('${param.bang_id}');
 		this._sendMessage('${param.bang_id}', 'USER_CHAT_MSG', $('#message').val());
@@ -50,6 +58,26 @@ var webSocket = {
 			bang_id: bang_id,
 			cmd: cmd,
 			msg: msg
+		};
+		var jsonData = JSON.stringify(msgData);
+		this._socket.send(jsonData);
+	},
+	_fixedDiceRolling: function(bang_id, cmd, dices_lock) {
+		var fixedDiceData = JSON.stringify(
+				 dices_lock
+			);
+		var msgData = {
+			bang_id: bang_id,
+			cmd: cmd,
+			dices_lock: fixedDiceData
+		};
+		var jsonData = JSON.stringify(msgData);
+		this._socket.send(jsonData);
+	},
+	_gameStart: function(bang_id, cmd) {
+		var msgData = {
+			bang_id: bang_id,
+			cmd: cmd
 		};
 		var jsonData = JSON.stringify(msgData);
 		this._socket.send(jsonData);
