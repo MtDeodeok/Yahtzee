@@ -89,8 +89,8 @@ public class GameBoard {
 		return sum;
 	}
 
-	// sixes
-	public int sixes(List<Integer> diceList) {
+	// sixs
+	public int sixs(List<Integer> diceList) {
 		int sum = 0;
 		for (int i = 0; i < diceList.size(); i++) {
 			if (diceList.get(i) == 6) {
@@ -102,10 +102,9 @@ public class GameBoard {
 
 	// upperSectionBonus
 	public int upperSectionBonus(int ones, int twos, int threes, int fours, int fives, int sixes) {
-		int bonus = 35;
 		int sum = ones + twos + threes + fours + fives + sixes;
 		if (sum >= 65) {
-			return bonus;
+			return 35;
 		}
 		return 0;
 	}
@@ -234,8 +233,8 @@ public class GameBoard {
 		return sum;
 	}
 
-	// fourOfAkind
-	public int fourOfAkind(List<Integer> diceList) {
+	// fourOfAKind
+	public int fourOfAKind(List<Integer> diceList) {
 		int sum = 0;
 		int check = diceCheck(diceList);
 		if (check == 4 || check == 6) {

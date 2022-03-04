@@ -76,19 +76,19 @@ public class WebSocketHandler extends TextWebSocketHandler {
 		ObjectMapper objectMapper = new ObjectMapper();
 		Map<String, String> mapReceive = objectMapper.readValue(message.getPayload(), Map.class);
 		Map<String, Object> mapDiceReceive = objectMapper.readValue(message.getPayload(), Map.class);
-		
+		List<Integer> dices = new ArrayList<Integer>();
 		switch (mapReceive.get("cmd")) {
 
 		// CLIENT 입장
 		case "GAME_ROOM_ENTER":
 			gameRoomEnter(mapReceive, session, objectMapper);
 			break;
-
 		// CLIENT 메세지
 		case "USER_CHAT_MSG":
-			// 같은 채팅방에 메세지 전송
 			userChatMsg(mapReceive, session, objectMapper);
 			break;
+			
+		// 보드 게임 관련 부분
 		case "GAME_START":
 			returnDiceList(mapReceive, session, objectMapper, dice.firstDiceList());
 			break;
@@ -98,11 +98,81 @@ public class WebSocketHandler extends TextWebSocketHandler {
 			System.out.println("다이스 롤링");
 			break;
 		case "ONES":
-			List<Integer> dices = new ArrayList<Integer>();
 			dices = (List<Integer>) ((Map)(mapDiceReceive.get("diceList"))).get("dices");
 			returnScore(mapReceive, session, objectMapper,gameScoreBoard.ones(dices));
 			System.out.println("ones!");
 			break;
+		case "TWOS":
+			dices = (List<Integer>) ((Map)(mapDiceReceive.get("diceList"))).get("dices");
+			returnScore(mapReceive, session, objectMapper,gameScoreBoard.twos(dices));
+			System.out.println("twos!");
+			break;
+		case "THREES":
+			dices = (List<Integer>) ((Map)(mapDiceReceive.get("diceList"))).get("dices");
+			returnScore(mapReceive, session, objectMapper,gameScoreBoard.threes(dices));
+			System.out.println("threes!");
+			break;
+		case "FOURS":
+			dices = (List<Integer>) ((Map)(mapDiceReceive.get("diceList"))).get("dices");
+			returnScore(mapReceive, session, objectMapper,gameScoreBoard.fours(dices));
+			System.out.println("fours!");
+			break;
+		case "FIVES":
+			dices = (List<Integer>) ((Map)(mapDiceReceive.get("diceList"))).get("dices");
+			returnScore(mapReceive, session, objectMapper,gameScoreBoard.fives(dices));
+			System.out.println("fives!");
+			break;
+		case "SIXS":
+			dices = (List<Integer>) ((Map)(mapDiceReceive.get("diceList"))).get("dices");
+			returnScore(mapReceive, session, objectMapper,gameScoreBoard.sixs(dices));
+			System.out.println("sixs!");
+			break;
+		case "CHOICE":
+			dices = (List<Integer>) ((Map)(mapDiceReceive.get("diceList"))).get("dices");
+			returnScore(mapReceive, session, objectMapper,gameScoreBoard.choice(dices));
+			System.out.println("choice!");
+			break;
+		case "ONEPAIR":
+			dices = (List<Integer>) ((Map)(mapDiceReceive.get("diceList"))).get("dices");
+			returnScore(mapReceive, session, objectMapper,gameScoreBoard.onePair(dices));
+			System.out.println("onePair!");
+			break;
+		case "TWOPAIR":
+			dices = (List<Integer>) ((Map)(mapDiceReceive.get("diceList"))).get("dices");
+			returnScore(mapReceive, session, objectMapper,gameScoreBoard.twoPair(dices));
+			System.out.println("twoPair!");
+			break;
+		case "THREEOFAKIND":
+			dices = (List<Integer>) ((Map)(mapDiceReceive.get("diceList"))).get("dices");
+			returnScore(mapReceive, session, objectMapper,gameScoreBoard.threeOfAKind(dices));
+			System.out.println("threeOfAKind!");
+			break;
+		case "FOUROFAKIND":
+			dices = (List<Integer>) ((Map)(mapDiceReceive.get("diceList"))).get("dices");
+			returnScore(mapReceive, session, objectMapper,gameScoreBoard.fourOfAKind(dices));
+			System.out.println("fourOfAKind!");
+			break;
+		case "FULLHOUSE":
+			dices = (List<Integer>) ((Map)(mapDiceReceive.get("diceList"))).get("dices");
+			returnScore(mapReceive, session, objectMapper,gameScoreBoard.fullHouse(dices));
+			System.out.println("fullHouse!");
+			break;
+		case "SMALLSTRAIGHT":
+			dices = (List<Integer>) ((Map)(mapDiceReceive.get("diceList"))).get("dices");
+			returnScore(mapReceive, session, objectMapper,gameScoreBoard.smallStraight(dices));
+			System.out.println("smallStraight!");
+			break;
+		case "LARGESTRAIGHT":
+			dices = (List<Integer>) ((Map)(mapDiceReceive.get("diceList"))).get("dices");
+			returnScore(mapReceive, session, objectMapper,gameScoreBoard.largeStraight(dices));
+			System.out.println("largeStraight!");
+			break;
+		case "YAHTZEE":
+			dices = (List<Integer>) ((Map)(mapDiceReceive.get("diceList"))).get("dices");
+			returnScore(mapReceive, session, objectMapper,gameScoreBoard.yahtzee(dices));
+			System.out.println("yahtzee!");
+			break;
+		
 		}
 		
 	}

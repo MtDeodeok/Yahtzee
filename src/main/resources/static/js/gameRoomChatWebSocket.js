@@ -1,3 +1,5 @@
+
+			
 var webSocket = {
 	init: function(param) {
 		console.log(param);
@@ -10,7 +12,7 @@ var webSocket = {
 	},
 	rollingDice: function() {
 		console.log('rollingDice call!');
-		this._fixedDiceRolling('${param.bang_id}', 'FIXED_DICE_ROLLING',11);	
+		this._fixedDiceRolling('${param.bang_id}', 'FIXED_DICE_ROLLING',9);	
 	},
 	ones:function(){
 		console.log('ones call!');
@@ -23,6 +25,66 @@ var webSocket = {
 			];
 		console.log(dices);
 		this._ones('${param.bang_id}', 'ONES', dices);
+	},
+	twos:function(){
+		console.log('twos call!');
+		var dices = [
+			Number($('#dicebtn1').val()),
+			Number($('#dicebtn2').val()),
+			Number($('#dicebtn3').val()),
+			Number($('#dicebtn4').val()),
+			Number($('#dicebtn5').val())
+			];
+		console.log(dices);
+		this._twos('${param.bang_id}', 'TWOS', dices);
+	},
+	threes:function(){
+		console.log('threes call!');
+		var dices = [
+			Number($('#dicebtn1').val()),
+			Number($('#dicebtn2').val()),
+			Number($('#dicebtn3').val()),
+			Number($('#dicebtn4').val()),
+			Number($('#dicebtn5').val())
+			];
+		console.log(dices);
+		this._threes('${param.bang_id}', 'THREES', dices);
+	},
+	fours:function(){
+		console.log('fours call!');
+		var dices = [
+			Number($('#dicebtn1').val()),
+			Number($('#dicebtn2').val()),
+			Number($('#dicebtn3').val()),
+			Number($('#dicebtn4').val()),
+			Number($('#dicebtn5').val())
+			];
+		console.log(dices);
+		this._fours('${param.bang_id}', 'FOURS', dices);
+	},
+	fives:function(){
+		console.log('fives call!');
+		var dices = [
+			Number($('#dicebtn1').val()),
+			Number($('#dicebtn2').val()),
+			Number($('#dicebtn3').val()),
+			Number($('#dicebtn4').val()),
+			Number($('#dicebtn5').val())
+			];
+		console.log(dices);
+		this._fives('${param.bang_id}', 'FIVES', dices);
+	},
+	sixs:function(){
+		console.log('sixs call!');
+		var dices = [
+			Number($('#dicebtn1').val()),
+			Number($('#dicebtn2').val()),
+			Number($('#dicebtn3').val()),
+			Number($('#dicebtn4').val()),
+			Number($('#dicebtn5').val())
+			];
+		console.log(dices);
+		this._sixs('${param.bang_id}', 'SIXS', dices);
 	},
 	sendChat: function() {
 		console.log('${param.bang_id}');
@@ -56,7 +118,41 @@ var webSocket = {
 			$('#dicebtn5').val(msgData.diceList[4]);
 		}
 		else if(msgData.cmd == 'ONES'){
-			console.log(msgData);
+			console.log(msgData.score);
+			$('#sheet_ones').val(msgData.score);
+			$('#sheet_ones').prop("type","text");
+			$('#sheet_ones').prop("readonly","readonly");
+			
+		}
+		else if(msgData.cmd == 'TWOS'){
+			console.log(msgData.score);
+			$('#sheet_twos').val(msgData.score);
+			$('#sheet_twos').prop("type","text");
+			$('#sheet_twos').prop("readonly","readonly");
+		}
+		else if(msgData.cmd == 'THREES'){
+			console.log(msgData.score);
+			$('#sheet_threes').val(msgData.score);
+			$('#sheet_threes').prop("type","text");
+			$('#sheet_threes').prop("readonly","readonly");
+		}
+		else if(msgData.cmd == 'FOURS'){
+			console.log(msgData.score);
+			$('#sheet_fours').val(msgData.score);
+			$('#sheet_fours').prop("type","text");
+			$('#sheet_fours').prop("readonly","readonly");
+		}
+		else if(msgData.cmd == 'FIVES'){
+			console.log(msgData.score);
+			$('#sheet_fives').val(msgData.score);
+			$('#sheet_fives').prop("type","text");
+			$('#sheet_fives').prop("readonly","readonly");
+		}
+		else if(msgData.cmd == 'SIXS'){
+			console.log(msgData.score);
+			$('#sheet_sixs').val(msgData.score);
+			$('#sheet_sixs').prop("type","text");
+			$('#sheet_sixs').prop("readonly","readonly");
 		}
 	},
 	closeMessage: function(str) {
@@ -108,6 +204,71 @@ var webSocket = {
 		this._socket.send(jsonData);
 	},
 	_ones: function(bang_id,cmd, dices){
+		var diceListData=
+		{
+			dices: dices
+		};
+		var msgData = {
+			bang_id: bang_id,
+			cmd: cmd,
+			diceList: diceListData
+		};
+		var jsonData = JSON.stringify(msgData);
+		this._socket.send(jsonData);
+	},
+	_twos: function(bang_id,cmd, dices){
+		var diceListData=
+		{
+			dices: dices
+		};
+		var msgData = {
+			bang_id: bang_id,
+			cmd: cmd,
+			diceList: diceListData
+		};
+		var jsonData = JSON.stringify(msgData);
+		this._socket.send(jsonData);
+	},
+	_threes: function(bang_id,cmd, dices){
+		var diceListData=
+		{
+			dices: dices
+		};
+		var msgData = {
+			bang_id: bang_id,
+			cmd: cmd,
+			diceList: diceListData
+		};
+		var jsonData = JSON.stringify(msgData);
+		this._socket.send(jsonData);
+	},
+	_fours: function(bang_id,cmd, dices){
+		var diceListData=
+		{
+			dices: dices
+		};
+		var msgData = {
+			bang_id: bang_id,
+			cmd: cmd,
+			diceList: diceListData
+		};
+		var jsonData = JSON.stringify(msgData);
+		this._socket.send(jsonData);
+	},
+	_fives: function(bang_id,cmd, dices){
+		var diceListData=
+		{
+			dices: dices
+		};
+		var msgData = {
+			bang_id: bang_id,
+			cmd: cmd,
+			diceList: diceListData
+		};
+		var jsonData = JSON.stringify(msgData);
+		this._socket.send(jsonData);
+	},
+	_sixs: function(bang_id,cmd, dices){
 		var diceListData=
 		{
 			dices: dices
