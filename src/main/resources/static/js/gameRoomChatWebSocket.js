@@ -9,8 +9,20 @@ var webSocket = {
 		this._gameStart('${param.bang_id}', 'GAME_START');
 	},
 	rollingDice: function() {
-		console.log('testDice call!');
+		console.log('rollingDice call!');
 		this._fixedDiceRolling('${param.bang_id}', 'FIXED_DICE_ROLLING',11);	
+	},
+	ones:function(){
+		console.log('ones call!');
+		var dices = [
+			Number($('#dicebtn1').val()),
+			Number($('#dicebtn2').val()),
+			Number($('#dicebtn3').val()),
+			Number($('#dicebtn4').val()),
+			Number($('#dicebtn5').val())
+			];
+		console.log(dices);
+		this._ones('${param.bang_id}', 'ONES', dices);
 	},
 	sendChat: function() {
 		console.log('${param.bang_id}');
@@ -33,6 +45,18 @@ var webSocket = {
 		// 퇴장
 		else if (msgData.cmd == 'GAME_ROOM_EXIT') {
 			$('#divChatData').append('<div>' + msgData.msg + '</div>');
+		}
+		// 주사위 전달받기
+		else if (msgData.cmd == 'DICE_ROLLING' && 'GAME_START'){
+			console.log(msgData.diceList);
+			$('#dicebtn1').val(msgData.diceList[0]);
+			$('#dicebtn2').val(msgData.diceList[1]);
+			$('#dicebtn3').val(msgData.diceList[2]);
+			$('#dicebtn4').val(msgData.diceList[3]);
+			$('#dicebtn5').val(msgData.diceList[4]);
+		}
+		else if(msgData.cmd == 'ONES'){
+			console.log(msgData);
 		}
 	},
 	closeMessage: function(str) {
@@ -62,10 +86,11 @@ var webSocket = {
 		var jsonData = JSON.stringify(msgData);
 		this._socket.send(jsonData);
 	},
-	_fixedDiceRolling: function(bang_id, cmd, dices_lock) {
-		var fixedDiceData = JSON.stringify(
-				 dices_lock
-			);
+	_fixedDiceRolling: function(bang_id, cmd, fixedDice) {
+		var fixedDiceData =
+			{
+				dices_lock: fixedDice
+			}
 		var msgData = {
 			bang_id: bang_id,
 			cmd: cmd,
@@ -78,6 +103,19 @@ var webSocket = {
 		var msgData = {
 			bang_id: bang_id,
 			cmd: cmd
+		};
+		var jsonData = JSON.stringify(msgData);
+		this._socket.send(jsonData);
+	},
+	_ones: function(bang_id,cmd, dices){
+		var diceListData=
+		{
+			dices: dices
+		};
+		var msgData = {
+			bang_id: bang_id,
+			cmd: cmd,
+			diceList: diceListData
 		};
 		var jsonData = JSON.stringify(msgData);
 		this._socket.send(jsonData);

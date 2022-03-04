@@ -32,18 +32,21 @@ public class GameBoard {
 	//아래부터 족보에 따른 점수 체크 및 점수값 리턴 관련 메소드
 	
 	// ones
-	private int ones(List<Integer> diceList) {
+	public int ones(List<Integer> diceList) {
 		int sum = 0;
+		
 		for (int i = 0; i < diceList.size(); i++) {
-			if (diceList.get(i).intValue() == 1) {
+			if (diceList.get(i)==1) {
 				sum = sum + 1;
+			} else {
+				sum = sum + 0;
 			}
 		}
 		return sum;
 	}
 
 	// twos
-	private int twos(List<Integer> diceList) {
+	public int twos(List<Integer> diceList) {
 		int sum = 0;
 		for (int i = 0; i < diceList.size(); i++) {
 			if (diceList.get(i) == 2) {
@@ -54,7 +57,7 @@ public class GameBoard {
 	}
 
 	// threes
-	private int threes(List<Integer> diceList) {
+	public int threes(List<Integer> diceList) {
 		int sum = 0;
 		for (int i = 0; i < diceList.size(); i++) {
 			if (diceList.get(i) == 3) {
@@ -65,7 +68,7 @@ public class GameBoard {
 	}
 
 	// fours
-	private int fours(List<Integer> diceList) {
+	public int fours(List<Integer> diceList) {
 		int sum = 0;
 		for (int i = 0; i < diceList.size(); i++) {
 			if (diceList.get(i) == 4) {
@@ -76,7 +79,7 @@ public class GameBoard {
 	}
 
 	// fives
-	private int fives(List<Integer> diceList) {
+	public int fives(List<Integer> diceList) {
 		int sum = 0;
 		for (int i = 0; i < diceList.size(); i++) {
 			if (diceList.get(i) == 5) {
@@ -87,7 +90,7 @@ public class GameBoard {
 	}
 
 	// sixes
-	private int sixes(List<Integer> diceList) {
+	public int sixes(List<Integer> diceList) {
 		int sum = 0;
 		for (int i = 0; i < diceList.size(); i++) {
 			if (diceList.get(i) == 6) {
@@ -98,7 +101,7 @@ public class GameBoard {
 	}
 
 	// upperSectionBonus
-	private int upperSectionBonus(int ones, int twos, int threes, int fours, int fives, int sixes) {
+	public int upperSectionBonus(int ones, int twos, int threes, int fours, int fives, int sixes) {
 		int bonus = 35;
 		int sum = ones + twos + threes + fours + fives + sixes;
 		if (sum >= 65) {
@@ -108,7 +111,7 @@ public class GameBoard {
 	}
 
 	// choice
-	private int choice(List<Integer> diceList) {
+	public int choice(List<Integer> diceList) {
 		int sum = 0;
 		for (int i = 0; i < diceList.size(); i++) {
 			sum = sum + diceList.get(i);
@@ -117,7 +120,7 @@ public class GameBoard {
 	}
 
 	// diceCheck
-	private int diceCheck(List<Integer> diceList) {
+	public int diceCheck(List<Integer> diceList) {
 		int result = 0;
 
 		int two = 0;
@@ -193,7 +196,7 @@ public class GameBoard {
 	}
 
 	// onePair
-	private int onePair(List<Integer> diceList) {
+	public int onePair(List<Integer> diceList) {
 		int sum = 0;
 		int check = diceCheck(diceList);
 		if (check >= 1) {
@@ -206,7 +209,7 @@ public class GameBoard {
 	}
 
 	// twoPair
-	private int twoPair(List<Integer> diceList) {
+	public int twoPair(List<Integer> diceList) {
 		int sum = 0;
 		int check = diceCheck(diceList);
 		if (check == 2 || check == 5) {
@@ -219,7 +222,7 @@ public class GameBoard {
 	}
 
 	// threeOfAKind
-	private int threeOfAKind(List<Integer> diceList) {
+	public int threeOfAKind(List<Integer> diceList) {
 		int sum = 0;
 		int check = diceCheck(diceList);
 		if (check == 3 || check == 4 || check == 5 || check == 6) {
@@ -232,7 +235,7 @@ public class GameBoard {
 	}
 
 	// fourOfAkind
-	private int fourOfAkind(List<Integer> diceList) {
+	public int fourOfAkind(List<Integer> diceList) {
 		int sum = 0;
 		int check = diceCheck(diceList);
 		if (check == 4 || check == 6) {
@@ -245,7 +248,7 @@ public class GameBoard {
 	}
 
 	// fullHouse
-	private int fullHouse(List<Integer> diceList) {
+	public int fullHouse(List<Integer> diceList) {
 		int sum = 0;
 		int check = diceCheck(diceList);
 		if (check == 5) {
@@ -258,7 +261,7 @@ public class GameBoard {
 	}
 
 	// yahtzee
-	private int yahtzee(List<Integer> diceList) {
+	public int yahtzee(List<Integer> diceList) {
 		int sum = 0;
 		int check = diceCheck(diceList);
 		if (check == 6) {
@@ -268,7 +271,7 @@ public class GameBoard {
 	}
 
 	// smallStraight
-	private int smallStraight(List<Integer> diceList) {
+	public int smallStraight(List<Integer> diceList) {
 		int sum = 0;
 		int check = diceCheck(diceList);
 		if (check == 7 || check == 8) {
@@ -278,7 +281,7 @@ public class GameBoard {
 	}
 
 	// largeStraight
-	private int largeStraight(List<Integer> diceList) {
+	public int largeStraight(List<Integer> diceList) {
 		int sum = 0;
 		int check = diceCheck(diceList);
 		if (check == 8) {

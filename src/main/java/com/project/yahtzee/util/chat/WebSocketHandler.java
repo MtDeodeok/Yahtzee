@@ -20,17 +20,22 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.yahtzee.service.MemberService;
 import com.project.yahtzee.util.Dice;
+import com.project.yahtzee.util.GameBoard;
 import com.project.yahtzee.util.gameRoom.GameRoom;
 import com.project.yahtzee.util.gameRoom.GameUser;
 import com.project.yahtzee.vo.MemberVO;
+import com.project.yahtzee.vo.YahtzeeBoardVO;
 
 @Component
 public class WebSocketHandler extends TextWebSocketHandler {
 
-	// 세션 리스트
-	private List<Map<String, Object>> sessionList = new ArrayList<Map<String, Object>>();
 	private MemberVO member = new MemberVO();
 	private Dice dice = new Dice();
+	private GameBoard gameScoreBoard = new GameBoard();
+
+	// 세션 리스트
+	private List<Map<String, Object>> sessionList = new ArrayList<Map<String, Object>>();
+	
 	// 시간 hh:mm:ss 채팅 끝에 출력
 	String dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 
@@ -70,7 +75,8 @@ public class WebSocketHandler extends TextWebSocketHandler {
 		// JSON --> Map으로 변환
 		ObjectMapper objectMapper = new ObjectMapper();
 		Map<String, String> mapReceive = objectMapper.readValue(message.getPayload(), Map.class);
-
+		Map<String, Object> mapDiceReceive = objectMapper.readValue(message.getPayload(), Map.class);
+		
 		switch (mapReceive.get("cmd")) {
 
 		// CLIENT 입장
@@ -84,19 +90,23 @@ public class WebSocketHandler extends TextWebSocketHandler {
 			userChatMsg(mapReceive, session, objectMapper);
 			break;
 		case "GAME_START":
-				dice.firstDiceList();
+			returnDiceList(mapReceive, session, objectMapper, dice.firstDiceList());
 			break;
 		case "FIXED_DICE_ROLLING":
-			System.out.println(mapReceive);
-			System.out.println(mapReceive.get("dices_lock"));
-			int num = Integer.parseInt(mapReceive.get("dices_lock"));
-			dice.fixedDice(num);
+			int num = (int) ((HashMap)mapDiceReceive.get("dices_lock")).get("dices_lock");
+			returnDiceList(mapReceive, session, objectMapper, dice.fixedDice(num));
 			System.out.println("다이스 롤링");
+			break;
+		case "ONES":
+			List<Integer> dices = new ArrayList<Integer>();
+			dices = (List<Integer>) ((Map)(mapDiceReceive.get("diceList"))).get("dices");
+			returnScore(mapReceive, session, objectMapper,gameScoreBoard.ones(dices));
+			System.out.println("ones!");
 			break;
 		}
 		
 	}
-
+	
 	// 클라이언트가 연결을 끊음 처리
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
@@ -195,5 +205,38 @@ public class WebSocketHandler extends TextWebSocketHandler {
 			}
 		}
 	}
-
+	
+	// 주사위 굴리기
+	private void returnDiceList(Map<String, String> mapReceive, WebSocketSession session, ObjectMapper objectMapper, List<Integer> diceList) throws IOException {
+		for (int i = 0; i < sessionList.size(); i++) {
+			Map<String, Object> mapSessionList = sessionList.get(i);
+			String bang_id = (String) mapSessionList.get("bang_id");
+			WebSocketSession sess = (WebSocketSession) mapSessionList.get("session");
+			if (bang_id.equals(mapReceive.get("bang_id"))) {
+				Map<String, Object> mapToSend = new HashMap<String, Object>();
+				mapToSend.put("bang_id", bang_id);
+				mapToSend.put("cmd", "DICE_ROLLING");
+				mapToSend.put("diceList", diceList);
+				String jsonStr = objectMapper.writeValueAsString(mapToSend);
+				sess.sendMessage(new TextMessage(jsonStr));
+			}
+		}
+	}
+	
+	// 점수 리턴
+	private void returnScore(Map<String, String> mapReceive, WebSocketSession session, ObjectMapper objectMapper,int score ) throws IOException {
+		for (int i = 0; i < sessionList.size(); i++) {
+			Map<String, Object> mapSessionList = sessionList.get(i);
+			String bang_id = (String) mapSessionList.get("bang_id");
+			WebSocketSession sess = (WebSocketSession) mapSessionList.get("session");
+			if (bang_id.equals(mapReceive.get("bang_id"))) {
+				Map<String, Object> mapToSend = new HashMap<String, Object>();
+				mapToSend.put("bang_id", bang_id);
+				mapToSend.put("cmd", mapReceive.get("cmd"));
+				mapToSend.put("score", score);
+				String jsonStr = objectMapper.writeValueAsString(mapToSend);
+				sess.sendMessage(new TextMessage(jsonStr));
+			}
+		}
+	}
 }

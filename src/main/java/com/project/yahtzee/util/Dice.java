@@ -39,7 +39,7 @@ public class Dice {
 	// 고정값을 2진수로 받아와서
 	// 고정값을 제외한 나머지 값 굴리기
 
-	public void fixedDice(int num) {
+	public List<Integer> fixedDice(int num) {
 		int[] dices_lock = new int[5];
 		
 		// 다이스 고정 위치 설정
@@ -54,6 +54,7 @@ public class Dice {
 			System.out.println("dices_lock["+i+"] : "+dices_lock[i]);
 		};
 		System.out.println("diceList : " + diceList);
+		return diceList;
 	}
 	
 }

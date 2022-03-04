@@ -5,9 +5,7 @@ import lombok.Data;
 @Data
 public class YahtzeeBoardVO {
 	
-	int idx;
-	String userID;
-
+	int sheet;
 	int ones;
 	int twos;
 	int threes;
