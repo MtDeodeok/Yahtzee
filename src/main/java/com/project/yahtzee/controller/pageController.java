@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.project.yahtzee.service.MatchService;
 import com.project.yahtzee.util.Dice;
 import com.project.yahtzee.util.chat.WebSocketHandler;
 import com.project.yahtzee.util.gameRoom.GameRoom;
@@ -29,7 +30,7 @@ public class pageController {
 	Dice dice = new Dice();
 	WebSocketHandler handler = new WebSocketHandler();
 	RoomManager roomManager = new RoomManager(); 
-	
+	private final MatchService matchservice;
 	List<String> roomList = new ArrayList<String>();
 	
 	
@@ -56,5 +57,10 @@ public class pageController {
 		
 		System.out.println("CreateGame : "+game);
 		return "redirect:/webSocket?bang_id="+bangID;
+	}
+	
+	@GetMapping("ranking")
+	public void ranking(Model model) {
+		model.addAttribute("ranking", matchservice.ranking());
 	}
 }

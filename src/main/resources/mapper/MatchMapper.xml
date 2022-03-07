@@ -14,9 +14,9 @@
 	
 	<!-- 랭킹 출력 -->
 	<select id="ranking" resultType="com.project.yahtzee.vo.MatchVO">
-		select @ranking:=@ranking+1 as ranking, m.* 
-		from matchTable as m, (select @ranking:=0) TMP
-		order by win desc, lose, draw, score desc, lastWinTime
+		select @ranking:=@ranking+1 as userRanking, m.* 
+		from matchtable as m, (select @ranking:=0) TMP
+		order by userWin desc, userLose, userDraw, userScore desc, lastWinTime;
 	</select>
 
 	<!-- 게임 승리 -->
