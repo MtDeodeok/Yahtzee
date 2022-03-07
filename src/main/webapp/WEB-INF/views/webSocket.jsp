@@ -11,9 +11,7 @@
 	<script src="/js/gameRoomChatWebSocket.js"></script>
 </head>
 <body>
-	<div id="gameRoom">
-		<jsp:include page="gameRoom.jsp" />
-	</div>
+	<jsp:include page="gameRoom.jsp" />
 	
 	<h3>채팅창</h3>
 	<div style="width: 800px; height: 700px; padding: 10px; border: solid 1px #e1e3e9;">

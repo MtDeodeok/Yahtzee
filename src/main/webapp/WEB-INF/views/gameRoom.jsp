@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<div id="gameRoom">
 	<h1>게임룸</h1>
 	<hr>
 	<button id="btnSend" onclick="webSocket.gameStart()" >시작</button>
@@ -21,3 +22,4 @@
 	fours : <input type="button" id="sheet_fours" value="0" onclick="webSocket.fours()" />
 	fives : <input type="button" id="sheet_fives" value="0" onclick="webSocket.fives()" />
 	sixs : <input type="button" id="sheet_sixs" value="0" onclick="webSocket.sixs()" />
+</div>
