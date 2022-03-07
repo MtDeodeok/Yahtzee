@@ -9,7 +9,7 @@
 <script src="/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 	function join(bangID) {
-		var href = "/webSocket?bang_id=" + bangID;
+		var href = "/gameRoom?bang_id=" + bangID;
 		location.href = href;
 	}
 </script>

@@ -26,12 +26,14 @@
 	<context:component-scan base-package="com.project.yahtzee" />
 	
 	<websocket:handlers>
-		<websocket:mapping handler="webSocketHandler" path="/webSocket" />
+		<websocket:mapping handler="webSocketHandler" path="/gameRoom" />
 		<websocket:sockjs />
 	</websocket:handlers>
     
-	<beans:bean id="webSocketHandler" class="com.project.yahtzee.handler.WebSocketHandler" />
-	
+	<beans:bean id="webSocketHandler"
+		class="com.project.yahtzee.handler.WebSocketHandler"
+		lazy-init="default" />
+
 	<beans:bean id="htmlEscapingObjectMapper" class="com.project.yahtzee.util.HtmlEscapingObjectMapperFactory" />
 	<mvc:annotation-driven>
 		<mvc:message-converters>

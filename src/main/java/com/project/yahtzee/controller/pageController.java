@@ -39,7 +39,7 @@ public class pageController {
 		model.addAttribute("roomList",roomList);
 	}
 	
-	@GetMapping("gameRoom")
+	@GetMapping("gameBoard")
 	public void gameRoom() {
 		
 	}

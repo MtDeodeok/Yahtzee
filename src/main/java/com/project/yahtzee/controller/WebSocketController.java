@@ -32,7 +32,7 @@ public class WebSocketController {
 	@RequestMapping(value = "/webSocket", method = RequestMethod.GET)
 	public String view_chat(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
 
-		return "webSocket";
+		return "gameRoom";
 	}
 	
 	@PostMapping("/joiner")

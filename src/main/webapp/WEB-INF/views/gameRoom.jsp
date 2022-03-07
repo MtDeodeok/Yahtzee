@@ -1,25 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-<div id="gameRoom">
-	<h1>게임룸</h1>
-	<hr>
-	<button id="btnSend" onclick="webSocket.gameStart()" >시작</button>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>채팅창</title>
+	<script src="/js/jquery-3.5.1.min.js"></script>
+	<script src="/js/sockjs.js"></script>
+	<script src="/js/gameRoomChatWebSocket.js"></script>
+</head>
+<body>
+	<jsp:include page="gameBoard.jsp" />
 	
-	<button id="btnSend" onclick="webSocket.rollingDice()" >굴리기</button>
-	<div id="dices">
-		<input type="button" id="dicebtn1" value="1" />
-		<input type="button" id="dicebtn2" value="1" />
-		<input type="button" id="dicebtn3" value="1" />
-		<input type="button" id="dicebtn4" value="1" />
-		<input type="button" id="dicebtn5" value="1" />
-		
+	<h3>채팅창</h3>
+	<div style="width: 800px; height: 700px; padding: 10px; border: solid 1px #e1e3e9;">
+		<div id="divChatData"></div>
 	</div>
-	ones : <input type="button" id="sheet_ones" value="0" onclick="webSocket.ones()" />
-	twos : <input type="button" id="sheet_twos" value="0" onclick="webSocket.twos()" />
-	threes : <input type="button" id="sheet_threes" value="0" onclick="webSocket.threes()" />
-	fours : <input type="button" id="sheet_fours" value="0" onclick="webSocket.fours()" />
-	fives : <input type="button" id="sheet_fives" value="0" onclick="webSocket.fives()" />
-	sixs : <input type="button" id="sheet_sixs" value="0" onclick="webSocket.sixs()" />
-</div>
+	<div style="width: 100%; height: 10%; padding: 10px;">
+		<input type="text" id="message" size="100" onkeypress="if(event.keyCode==13){webSocket.sendChat();}" />
+		<input type="button" id="btnSend" value="채팅 전송" onclick="webSocket.sendChat()" />
+	</div>
+</body>
+</html>
