@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:if="${session.state eq '신규'}" th:text="가입"></title>
+<title th:unless="${session.state eq '신규'}" th:text="로그인"></title>
+</head>
+<body>
+	<form id='joiner' action="joiner" method='post'>
+		<input type='text' style='display: none' readonly id='profile' name='userProfile' th:value="${session.loginMember.userProfile}">
+		<input type='text' readonly id='userEmail' name='userEmail' th:value="${session.loginMember.userEmail}"><br>
+		<input type='text' readonly id='userProvider' name='userProvider' th:value="${session.loginMember.userProvider}"><br>
+		<input type='text' readonly id='userName' name='userName' th:value="${session.loginMember.userName}"><br>
+		
+		<div th:if="${session.state eq '신규'}">
+			<input type='text' id='userID' name='userID' value="아이디를 입력하세요"><br>
+			<input type='text' id='userNickName' name='userNickName' value="닉네임을 입력하세요">
+			<div>
+				<button type='submit'>가입</button>
+				<button type='button' onclick="location.href='login.jsp'">나가기</button>
+			</div>
+		</div>
+		<div th:unless="${session.state eq '신규'}">
+			<input type='text' readonly id='userID' name='userID' th:value="${session.loginMember.userID}"><br>
+			<input type='text' id='userNickName' name='userNickName' th:value="${session.loginMember.userNickName}">
+			<div>
+				<button type='submit'>입장</button>
+				<button type='button' onclick="location.href='/login'">나가기</button>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

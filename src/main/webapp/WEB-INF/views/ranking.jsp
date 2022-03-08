@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>랭킹</title>
 </head>
 <body>
 	<table border="1">

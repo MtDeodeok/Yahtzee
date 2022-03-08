@@ -39,6 +39,12 @@
 		    <artifactId>spring-webmvc</artifactId>
 		</dependency>
 		
+		<!-- 타임리프 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		
 		<!-- 마이바티스 -->
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>

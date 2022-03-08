@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>랭킹</title>
+</head>
+<body>
+	<table border="1">
+		<tr>
+			<td>랭킹</td>
+			<td>유저ID</td>
+			<td>전적</td>
+			<td>승리</td>
+			<td>무승부</td>
+			<td>패배</td>
+		</tr>
+		<tr th:each="ranking : ${ranking}">
+			<td th:text="${ranking.userRanking }"></td>
+			<td th:text="${ranking.userID}"></td>
+			<td th:text="${ranking.userScore}"></td>
+			<td th:text="${ranking.userWin}"></td>
+			<td th:text="${ranking.userDraw}"></td>
+			<td th:text="${ranking.userLose}"></td>
+		</tr>
+	</table>
+</body>
+</html>
