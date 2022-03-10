@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>자유 게시판</title>
+</head>
+<body>
+<div>
+    <!-- 에디터 영역 -->
+</div>
+
+<!--
+    목록 최신순
+    기본 10개 노출
+    게시글 10개 이하일 때, 더보기 비노출
+    더보기시 추가 10개 호출(없으면 잇는데로)
+-->
+<ul>
+    <li>
+        <div><span>제목</span>{제목}</div>
+        <div><span>작성자</span>{작성자}</div>
+        <div><span>시간(작성/갱신)</span>{시간(작성/갱신)}</div>
+        <div><span>본문</span>{본문}</div>
+        <div>
+            <!-- 작성자 -->
+            <button>수정</button>
+            <button>삭제</button>
+            <!-- 비로그인 혹은 다른 사용자 -->
+            <button>추천</button>
+            <button>신고</button>
+        </div>
+    </li>
+    <li>
+        <div><span>제목</span>{제목}</div>
+        <div><span>작성자</span>{작성자}</div>
+        <div><span>시간(작성/갱신)</span>{시간(작성/갱신)}</div>
+        <div><span>본문</span>{본문}</div>
+        <div>
+            <!-- 작성자 -->
+            <button>수정</button>
+            <button>삭제</button>
+            <!-- 비로그인 혹은 다른 사용자 -->
+            <button>추천</button>
+            <button>신고</button>
+        </div>
+    </li>
+</ul>
+
+<div>
+    <button>더보기</button>
+</div>
+</body>
+</html>

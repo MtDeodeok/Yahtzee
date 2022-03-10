@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.yahtzee.dao.MessageBoardDAO">
+	
+	<!-- 신규 게시글 -->
+	<insert id="insertMessageBoard" parameterType="com.project.yahtzee.vo.MessageBoardVO">
+		insert into
+		messageboard(title, userID, content, writeDate)
+		values (#{title}, #{userID}, #{content}, #{writeDate})
+	</insert>
+	
+	<!-- 게시글 리스트 출력 -->
+	<select id="messageBoardList" resultType="com.project.yahtzee.vo.MessageBoardVO">
+		select *
+		from messageboard
+		where state = 0
+	</select>
+
+	<!-- 게시글 업데이트 -->
+	<update id="updateMessageBoard" parameterType="com.project.yahtzee.vo.MessageBoardVO">
+		update messageboard
+		set title=#{title}, content=#{content}, modifiyDate=#{modifiyDate} 
+		where idx = #{idx} and userID = #{userID}
+	</update>
+
+	
+</mapper>
