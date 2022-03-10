@@ -63,4 +63,10 @@ public class pageController {
 	public void ranking(Model model) {
 		model.addAttribute("ranking", matchservice.ranking());
 	}
+	
+	@GetMapping("messageBoard")
+	public void messageBoard() {
+		
+	}
+
 }
