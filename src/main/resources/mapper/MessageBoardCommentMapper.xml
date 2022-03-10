@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.yahtzee.dao.MessageBoardCommentDAO">
+	
+	<!-- 신규 코멘트 -->
+	<insert id="insertMessageBoardComment" parameterType="com.project.yahtzee.vo.MessageBoardCommentVO">
+		insert into
+		messageboardcomment(messageboardIdx, userID, comment, writeDate)
+		values (#{messageboardIdx}, #{userID}, #{comment}, #{writeDate})
+	</insert>
+	
+	<!-- 코멘트 리스트 출력 -->
+	<select id="messageBoardList" parameterType="int" resultType="com.project.yahtzee.vo.MessageBoardCommentVO">
+		select *
+		from messageboardcomment
+		where messageboardIdx = #{messageboardIdx}
+	</select>
+
+	<!-- 코멘트 수정 -->
+	<update id="updateMessageBoard" parameterType="com.project.yahtzee.vo.MessageBoardCommentVO">
+		update messageboardcomment
+		set comment=#{comment}, modifiyDate=#{modifiyDate} 
+		where idx = #{idx} and messageboardIdx=#{messageboardIdx} and userID = #{userID}
+	</update>
+
+	
+</mapper>
