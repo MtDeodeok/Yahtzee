@@ -1,5 +1,3 @@
-
-			
 var webSocket = {
 	init: function(param) {
 		console.log(param);

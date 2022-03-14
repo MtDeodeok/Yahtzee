@@ -16,18 +16,19 @@ import lombok.RequiredArgsConstructor;
 public class MessageBoardServiceImpl implements MessageBoardService{
 
 	private final MessageBoardDAO messageBoardDAO;
-	String modifiyTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+	String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 	
 	@Override
 	public void insertMessageBoard(MessageBoardVO messageBoardVO) {
 		// TODO Auto-generated method stub
+		messageBoardVO.setWriteDate(now);
 		messageBoardDAO.insertMessageBoard(messageBoardVO);
 	}
 
 	@Override
 	public void updateMessageBoard(MessageBoardVO messageBoardVO) {
 		// TODO Auto-generated method stub
-		messageBoardVO.setModifiyDate(modifiyTime);
+		messageBoardVO.setModifiyDate(now);
 		messageBoardDAO.updateMessageBoard(messageBoardVO);
 	}
 
@@ -43,6 +44,17 @@ public class MessageBoardServiceImpl implements MessageBoardService{
 		
 		return messageBoardDAO.messageBoardList();
 	}
-	
+
+	@Override
+	public List<MessageBoardVO> findListPaging(int startIndex, int pageSize) {
+		// TODO Auto-generated method stub
+		return  messageBoardDAO.findListPaging(startIndex, pageSize);
+	}
+
+	@Override
+	public int messageBoardCount() {
+		// TODO Auto-generated method stub
+		return messageBoardDAO.messageBoardCount();
+	}
 	
 }

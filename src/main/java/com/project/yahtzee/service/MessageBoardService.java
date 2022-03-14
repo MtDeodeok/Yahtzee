@@ -14,4 +14,6 @@ public interface MessageBoardService {
 	void updateMessageBoard(MessageBoardVO messageBoardVO);
 	void deleteMessageBoard();
 	List<MessageBoardVO> messageBoardList();
+	List<MessageBoardVO> findListPaging(int startIndex, int pageSize);
+	int messageBoardCount();
 }

@@ -8,13 +8,21 @@
 	<!-- 신규 게시글 -->
 	<insert id="insertMessageBoard" parameterType="com.project.yahtzee.vo.MessageBoardVO">
 		insert into
-		messageboard(title, userID, content, writeDate)
-		values (#{title}, #{userID}, #{content}, #{writeDate})
+		messageboard(title, userID, content, writeDate,modifiyDate)
+		values (#{title}, #{userID}, #{content}, #{writeDate},#{writeDate})
 	</insert>
 	
-	<!-- 게시글 리스트 출력 -->
-	<select id="messageBoardList" resultType="com.project.yahtzee.vo.MessageBoardVO">
-		select *
+	<!-- 게시글 10개 리스트 출력 -->
+	<select id="findListPaging" parameterType="int" resultType="com.project.yahtzee.vo.MessageBoardVO">
+		select * 
+		from messageboard
+		where state = 0
+		limit #{startIndex},#{pageSize};
+	</select>
+
+	<!-- 게시글 총개수 -->
+	<select id="messageBoardCount" resultType="int">
+		select count(*)
 		from messageboard
 		where state = 0
 	</select>
@@ -25,6 +33,5 @@
 		set title=#{title}, content=#{content}, modifiyDate=#{modifiyDate} 
 		where idx = #{idx} and userID = #{userID}
 	</update>
-
 	
 </mapper>
