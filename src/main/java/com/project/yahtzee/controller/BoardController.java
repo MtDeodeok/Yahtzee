@@ -63,6 +63,10 @@ public class BoardController {
 		return listData;
 	}
 	
+	@GetMapping("writeBoard")
+	public void writeBoard() {
+
+	}
 	@PostMapping("writeBoard")
 	public String writeBoard(HttpServletRequest request, HttpSession session, MessageBoardVO messageBoardVO) {
 		MemberVO member = (MemberVO) session.getAttribute("loginMember");

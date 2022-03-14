@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>글쓰기</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="js/ckeditor/ckeditor.js"></script>
+<script src="/js/messageBoardWrite.js"></script>
+</head>
+<body>
+	<div>
+		<div>
+			<label for="title">제목</label>
+			<input id="title" name="title" type="text" placeholder="제목">
+		</div>
+		<textarea id="contents" name="contents" rows="20" cols="100" placeholder="내용"></textarea>
+		<button id="write">제출</button>
+	</div>
+</body>
+</html>
