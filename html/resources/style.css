@@ -118,9 +118,11 @@ body {
 .waiting ul li button:hover {
   background: linear-gradient(0, rgb(255, 255, 255) 0%, rgb(235, 235, 235) 70%);
 }
-/* laytou */
+/* layout */
 .layout > header + section {
+  height: calc(100vh - 202px);
   padding: 40px;
+  box-sizing: border-box;
 }
 .layout.is-dialog-open {
   height: 100vh;
@@ -218,6 +220,33 @@ body {
 }
 .layout > header nav ul li a.on {
   color: #666;
+}
+/* rank */
+.no-rank-data {
+  text-align: center;
+  padding: 150px 40px;
+  font-size: 26px;
+}
+.rank-list {
+  width: 100%;
+}
+.rank-list thead th:first-child {
+  width: 80px;
+}
+.rank-list thead th:first-child + th {
+  width: 300px;
+}
+.rank-list tbody td:first-child {
+  text-align: center;
+}
+.rank-list tbody tr:nth-child(1) td {
+  font-size: 40px;
+}
+.rank-list tbody tr:nth-child(2) td {
+  font-size: 32px;
+}
+.rank-list tbody tr:nth-child(3) td {
+  font-size: 26px;
 }
 /* footer */
 .layout > footer {
