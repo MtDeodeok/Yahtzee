@@ -264,9 +264,45 @@ body {
   padding-bottom: 10px;
   margin-bottom: 10px;
 }
+.board .list ul .post .post-body {
+  border-bottom: 1px solid #999;
+  padding: 10px 0 20px;
+  margin-bottom: 10px;
+}
 .board .list ul .post .post-info .time {
   font-size: 12px;
   color: #999;
+}
+.board .list ul.reply-list {
+  padding-left: 30px;
+}
+.board .list .reply-list .reply {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 12px;
+  border: 1px solid #aaa;
+}
+.board .list .reply-list .reply .reply-info {
+  border-bottom: 1px dotted #999;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+.board .list .reply-list .reply .reply-body {
+  border-bottom: 1px solid #999;
+  padding: 5px 0 20px;
+  margin-bottom: 5px;
+}
+.board .list .reply-list .reply .reply-btns {
+  display: flex;
+  justify-content: space-between;
+}
+.board .list .reply-write {
+  padding: 10px 0;
+}
+.board .list .reply-write textarea {
+  width: 100%;
+  height: 100px;
+  box-sizing: border-box;
 }
 /* rank */
 .no-rank-data {
@@ -322,6 +358,12 @@ body {
 	height: 40px;
 	line-height: 40px;
 }
+.btn.small {
+  font-size: 12px;
+  padding: 0 10px;
+  height: 28px;
+  line-height: 28px;
+}
 .btn:hover {
 	box-shadow: inset 0px 0px 10px 2px rgb(255 255 255 / 70%);
 }
@@ -343,8 +385,15 @@ body {
 	align-items: center;
 	justify-content: center;
 }
+.btn-group.left {
+	justify-content: flex-start;
+}
 .btn-group.right {
 	justify-content: flex-end;
+}
+.post-btns {
+  display: flex;
+  justify-content: space-between;
 }
 .btn-group .btn + .btn {
 	margin-left: 15px;
