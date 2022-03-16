@@ -35,6 +35,11 @@ public class WebSocketController {
 		return "gameRoom";
 	}
 	
+	@GetMapping("gameRoom")
+	public String gameRoom() {
+		return "/webSocket";
+	}
+	
 	@PostMapping("/joiner")
 	public String joiner(HttpSession session, MemberVO member) {
 		if(member!=null) {
@@ -72,10 +77,6 @@ public class WebSocketController {
 	public void join() {
 		
 	}
-	
-	@GetMapping(value = {"/","/login"})
-	public String login() {
-		return "login";
-	}
+
 
 }
