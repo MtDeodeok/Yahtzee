@@ -28,7 +28,7 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-public class BoardController {
+public class MessageBoardController {
 
 	private final MessageBoardService messageBoardService;
 	private final MessageBoardCommentService messageBoardCommentService;
@@ -82,4 +82,5 @@ public class BoardController {
 		messageBoardService.insertMessageBoard(messageBoardVO);
 		return "redirect:messageBoard";
 	}
+
 }

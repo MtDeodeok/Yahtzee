@@ -28,7 +28,7 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-public class BoardCommentController {
+public class MessageBoardCommentController {
 
 	private final MessageBoardService messageBoardService;
 	private final MessageBoardCommentService messageBoardCommentService;
