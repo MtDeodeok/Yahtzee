@@ -5,7 +5,6 @@ import lombok.Data;
 @Data
 public class MessageBoardVO {
 	int idx;
-	String title;
 	String userID;
 	String content;
 	String writeDate;

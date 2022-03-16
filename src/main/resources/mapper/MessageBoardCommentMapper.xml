@@ -8,15 +8,14 @@
 	<!-- 신규 코멘트 -->
 	<insert id="insertMessageBoardComment" parameterType="com.project.yahtzee.vo.MessageBoardCommentVO">
 		insert into
-		messageboardcomment(messageboardIdx, userID, comment, writeDate)
-		values (#{messageboardIdx}, #{userID}, #{comment}, #{writeDate})
+		messageboardcomment(userID, comment, writeDate)
+		values (#{userID}, #{comment}, #{writeDate})
 	</insert>
 	
 	<!-- 코멘트 리스트 출력 -->
-	<select id="messageBoardList" parameterType="int" resultType="com.project.yahtzee.vo.MessageBoardCommentVO">
+	<select id="messageBoardCommentList" resultType="com.project.yahtzee.vo.MessageBoardCommentVO">
 		select *
 		from messageboardcomment
-		where messageboardIdx = #{messageboardIdx}
 	</select>
 
 	<!-- 코멘트 수정 -->

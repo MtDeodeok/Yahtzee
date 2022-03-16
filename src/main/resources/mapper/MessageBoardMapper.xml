@@ -8,8 +8,8 @@
 	<!-- 신규 게시글 -->
 	<insert id="insertMessageBoard" parameterType="com.project.yahtzee.vo.MessageBoardVO">
 		insert into
-		messageboard(title, userID, content, writeDate,modifiyDate)
-		values (#{title}, #{userID}, #{content}, #{writeDate},#{writeDate})
+		messageboard(userID, content, writeDate,modifiyDate)
+		values (#{userID}, #{content}, #{writeDate},#{writeDate})
 	</insert>
 	
 	<!-- 게시글 10개 리스트 출력 -->
@@ -17,6 +17,7 @@
 		select * 
 		from messageboard
 		where state = 0
+		order by idx desc, writeDate desc
 		limit #{startIndex},#{pageSize};
 	</select>
 
@@ -30,7 +31,7 @@
 	<!-- 게시글 업데이트 -->
 	<update id="updateMessageBoard" parameterType="com.project.yahtzee.vo.MessageBoardVO">
 		update messageboard
-		set title=#{title}, content=#{content}, modifiyDate=#{modifiyDate} 
+		set content=#{content}, modifiyDate=#{modifiyDate} 
 		where idx = #{idx} and userID = #{userID}
 	</update>
 	

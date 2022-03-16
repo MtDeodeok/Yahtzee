@@ -11,5 +11,5 @@ public interface MessageBoardCommentService {
 	void insertMessageBoardComment(MessageBoardCommentVO messageBoardCommentVO);
 	void updateMessageBoardComment(MessageBoardCommentVO messageBoardCommentVO);
 	void deleteMessageBoardComment();
-	List<MessageBoardCommentVO> messageBoardCommentList(int messageboardIdx);
+	List<MessageBoardCommentVO> messageBoardCommentList();
 }
