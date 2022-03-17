@@ -296,6 +296,9 @@ body {
   display: flex;
   justify-content: space-between;
 }
+.board .list .reply-list .reply .reply-body .reply-write {
+  padding-bottom: 0;
+}
 .board .list .reply-write {
   padding: 10px 0;
 }
