@@ -12,7 +12,7 @@ import com.project.yahtzee.vo.MessageBoardVO;
 public interface MessageBoardService {
 	void insertMessageBoard(MessageBoardVO messageBoardVO);
 	void updateMessageBoard(MessageBoardVO messageBoardVO);
-	void deleteMessageBoard();
+	void deleteMessageBoard(int idx);
 	List<MessageBoardVO> messageBoardList();
 	List<MessageBoardVO> findListPaging(int startIndex, int pageSize);
 	int messageBoardCount();

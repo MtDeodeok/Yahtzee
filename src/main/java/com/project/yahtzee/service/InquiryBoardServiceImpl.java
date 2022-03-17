@@ -32,9 +32,9 @@ public class InquiryBoardServiceImpl implements InquiryBoardService{
 	}
 
 	@Override
-	public void deleteInquiryBoard() {
+	public void deleteInquiryBoard(int idx) {
 		// TODO Auto-generated method stub
-		
+		inquiryBoardDAO.deleteInquiryBoard(idx);
 	}
 
 	@Override

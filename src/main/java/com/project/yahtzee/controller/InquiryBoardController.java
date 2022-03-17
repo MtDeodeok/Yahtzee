@@ -60,10 +60,19 @@ public class InquiryBoardController {
 	@PostMapping("writeInquiryBoard")
 	public String writeInquiryBoard(HttpServletRequest request, HttpSession session, InquiryBoardVO inquiryBoardVO) {
 		MemberVO member = (MemberVO) session.getAttribute("loginMember");
-		inquiryBoardVO.setContent(request.getParameter("content"));
+		String content = request.getParameter("content");
+		content = content.replaceAll("&lt;", "<");
+		content = content.replaceAll("&gt;", ">");
+		inquiryBoardVO.setContent(content);
 		inquiryBoardVO.setUserID(member.getUserID());
 		inquiryBoardService.insertInquiryBoard(inquiryBoardVO);
 		return "inquiryBoard";
 	}
 
+	@PostMapping("deleteInquiryBoard")
+	public String deleteInquiryBoard(@RequestParam(value="boardIdx")String boardIdx) {
+		int idx = Integer.parseInt(boardIdx);
+		inquiryBoardService.deleteInquiryBoard(idx);
+		return "messageBoard";
+	}
 }

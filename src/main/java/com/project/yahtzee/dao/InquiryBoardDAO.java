@@ -12,7 +12,7 @@ import com.project.yahtzee.vo.MessageBoardVO;
 public interface InquiryBoardDAO {
 	void insertInquiryBoard(InquiryBoardVO inquiryBoardVO);
 	void updateInquiryBoard(InquiryBoardVO inquiryBoardVO);
-	void deleteInquiryBoard();
+	void deleteInquiryBoard(@Param("idx")int idx);
 	List<InquiryBoardVO> inquiryBoardList();
 	List<InquiryBoardVO> findListPaging(@Param("startIndex")int startIndex, @Param("pageSize")int pageSize);
 	int inquiryBoardCount();

@@ -35,4 +35,7 @@
 		where idx = #{idx} and userID = #{userID}
 	</update>
 	
+	<delete id="deleteInquiryBoard" parameterType="int">
+		delete from inquiryboard where idx=#{idx}
+	</delete>
 </mapper>

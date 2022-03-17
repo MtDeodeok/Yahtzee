@@ -24,7 +24,7 @@
 			<div class="post-btns">
 				<div class="btn-group left" th:if="${session.loginMember.userID}==${boardList.userID}">
 					<button class="btn" >수정</button>
-					<button class="btn">삭제</button>
+					<button class="btn" th:onclick="deleteBoard([[${boardList.idx}]])">삭제</button>
 				</div>
 			</div>
 		</li>
