@@ -11,7 +11,7 @@ import com.project.yahtzee.vo.MessageBoardVO;
 public interface MessageBoardDAO {
 	void insertMessageBoard(MessageBoardVO messageBoardVO);
 	void updateMessageBoard(MessageBoardVO messageBoardVO);
-	void deleteMessageBoard();
+	void deleteMessageBoard(@Param("idx")int idx);
 	List<MessageBoardVO> messageBoardList();
 	List<MessageBoardVO> findListPaging(@Param("startIndex")int startIndex, @Param("pageSize")int pageSize);
 	int messageBoardCount();

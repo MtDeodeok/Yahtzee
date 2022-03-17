@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title>자유 게시판</title>
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="js/ckeditor/ckeditor.js"></script>
-<script src="/js/messageBoard.js"></script>
+<script type="text/javascript" src="/js/messageBoard.js"></script>
+
 </head>
 <body>
 	<h3>자유 게시판</h3>
@@ -26,12 +26,12 @@
 					<span th:unless="${#strings.toString(boardList.writeDate)}==${#strings.toString(boardList.modifiyDate)}" th:text="${boardList.modifiyDate}"></span>
 			</div>
 			<div>
-				<span>본문</span><span class="ck-content" th:text="${boardList.content}"></span>
+				<span>본문</span><span class="ck-content" th:id="cotent+${boardList.idx}" th:text="${boardList.content}"></span>
 			</div>
 			<div class="post-btns">
 				<div class="btn-group left" th:if="${session.loginMember.userID}==${boardList.userID}">
-					<button class="btn" >수정</button>
-					<button class="btn">삭제</button>
+					<button class="btn" th:onclick="modifiyBoard([[${boardList.idx}]])">수정</button>
+					<button class="btn" th:onclick="deleteBoard([[${boardList.idx}]])">삭제</button>
 					<button class="btn">덧글쓰기</button>
 				</div>
 				<div class="btn-group right" th:unless="${session.loginMember.userID}==${boardList.userID}">

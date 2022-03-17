@@ -52,7 +52,6 @@ public class MessageBoardController {
 		
 		List<MessageBoardVO> boardList = messageBoardService.findListPaging(startIndex, pageSize);
 		List<MessageBoardCommentVO> boardCommentList = messageBoardCommentService.messageBoardCommentList();
-		System.out.println(boardCommentList);
 		model.addAttribute("messageBoardList", boardList);
 		model.addAttribute("messageBoardCommentList",boardCommentList);
 	}
@@ -76,11 +75,19 @@ public class MessageBoardController {
 	@PostMapping("writeBoard")
 	public String writeBoard(HttpServletRequest request, HttpSession session, MessageBoardVO messageBoardVO) {
 		MemberVO member = (MemberVO) session.getAttribute("loginMember");
-		messageBoardVO.setContent(request.getParameter("content"));
-		System.out.println(request.getParameter("content"));
+		String content = request.getParameter("content");
+		content = content.replaceAll("&lt;", "<");
+		content = content.replaceAll("&gt;", ">");
+		messageBoardVO.setContent(content);
 		messageBoardVO.setUserID(member.getUserID());
 		messageBoardService.insertMessageBoard(messageBoardVO);
 		return "redirect:messageBoard";
 	}
-
+	
+	@PostMapping("deleteMessageBoard")
+	public String deleteMessageBoard(@RequestParam(value="boardIdx")String boardIdx) {
+		int idx = Integer.parseInt(boardIdx);
+		messageBoardService.deleteMessageBoard(idx);
+		return "messageBoard";
+	}
 }

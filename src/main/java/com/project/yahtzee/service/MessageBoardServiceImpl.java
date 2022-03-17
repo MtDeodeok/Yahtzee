@@ -33,9 +33,9 @@ public class MessageBoardServiceImpl implements MessageBoardService{
 	}
 
 	@Override
-	public void deleteMessageBoard() {
+	public void deleteMessageBoard(int idx) {
 		// TODO Auto-generated method stub
-		
+		messageBoardDAO.deleteMessageBoard(idx);
 	}
 
 	@Override
