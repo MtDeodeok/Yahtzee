@@ -160,6 +160,7 @@ function btnCreateRoomSubmit() {
         }
     });
 }
+
 function toggleDialog() {
     document.querySelector('.layout').classList.toggle('is-dialog-open');
 }
@@ -170,6 +171,42 @@ function dialogInit() {
 
 function getRandom(max, min) {
     return (Math.floor(Math.random() * (max-min)) + min) * 90;
+}
+
+function btnPostModify(seq) {
+    const body = $('[data-seq=' + seq + ']').find($('.post-body'));
+    const content = body.find($('.ckeditor-content'));
+    const editor = body.find($('.write'));
+
+    content.hide();
+    editor.show();
+}
+
+function btnReplyModify(seq) {
+    const body = $('[data-seq=' + seq + ']').find($('.reply-body'));
+    const content = body.find($('.ckeditor-content'));
+    const editor = body.find($('.reply-write'));
+
+    content.hide();
+    editor.show();
+}
+
+function btnPostModifyCancel(seq) {
+    const body = $('[data-seq=' + seq + ']').find($('.post-body'));
+    const content = body.find($('.ckeditor-content'));
+    const editor = body.find($('.write'));
+
+    editor.hide();
+    content.show();
+}
+
+function btnReplyModifyCancel(seq) {
+    const body = $('[data-seq=' + seq + ']').find($('.reply-body'));
+    const content = body.find($('.ckeditor-content'));
+    const editor = body.find($('.reply-write'));
+
+    editor.hide();
+    content.show();
 }
 
 function rollDice() {

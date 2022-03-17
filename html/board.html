@@ -44,24 +44,25 @@
                         </div>
                         <div class="post-body">
                             <!-- 수정 -->
-                            <div class="ckeditor-content" style="display: none;">
+                            <div class="ckeditor-content">
                                 <div class="ckeditor-content">
-                                    <span>내용내용ㅇ내내애ㅓ랜래ㅓ앤ㅇ러ㅐ</span>
+                                    <span>수정 버튼 테스트용</span>
                                 </div>
                             </div>
-                            <div class="write">
+                            <div class="write" style="display: none;">
                                 <div class="editor">
                                     <textarea name="" id="" cols="30" rows="10"></textarea>
                                 </div>
                                 <div class="btn-group right">
                                     <button class="btn btn_write">수정</button>
+                                    <button class="btn btn_cancel" onclick="btnPostModifyCancel('1')">취소</button>
                                 </div>
                             </div>
                             <!-- // 수정 -->
                         </div>
                         <div class="post-btns">
                             <div class="btn-group left">
-                                <button class="btn" onclick="handleModify('1')">수정</button>
+                                <button class="btn" onclick="btnPostModify('1')">수정</button>
                                 <button class="btn">삭제</button>
                             </div>
                             <div class="btn-group right">
@@ -88,27 +89,28 @@
                                 </div>
                                 <div class="reply-body">
                                     <!-- 덧글 수정 -->
-                                    <div class="ckeditor-content" style="display:none;">
-                                        <span>내용내용ㅇ내내애ㅓ랜래ㅓ앤ㅇ러ㅐ</span>
+                                    <div class="ckeditor-content">
+                                        <span>수정 버튼 테스트용</span>
                                     </div>
-                                    <div class="reply-write">
+                                    <div class="reply-write" style="display:none;">
                                         <div class="editor">
                                             <textarea name="" id="" cols="30" rows="10"></textarea>
                                         </div>
                                         <div class="btn-group right">
                                             <button class="btn small btn_write">수정</button>
+                                            <button class="btn small btn_cancel" onclick="btnReplyModifyCancel('111')">취소</button>
                                         </div>
                                     </div>
                                     <!-- 덧글 수정 -->
                                 </div>
                                 <div class="reply-btns">
                                     <div class="btn-group left">
-                                        <button class="btn small" onclick="handleModify('111');">수정</button>
+                                        <button class="btn small" onclick="btnReplyModify('111');">수정</button>
                                         <button class="btn small">삭제</button>
                                     </div>
                                 </div>
                             </li>
-                            <li class="reply">
+                            <li class="reply" data-seq="112">
                                 <div class="reply-info">
                                     <span>작성자 이름</span>
                                     <div class="time">
@@ -119,12 +121,21 @@
                                 </div>
                                 <div class="reply-body">
                                     <div class="ckeditor-content">
-                                        <span>내용내용ㅇ내내애ㅓ랜래ㅓ앤ㅇ러ㅐ</span>
+                                        <span>수정 버튼 테스트용</span>
+                                    </div>
+                                    <div class="reply-write" style="display:none;">
+                                        <div class="editor">
+                                            <textarea name="" id="" cols="30" rows="10"></textarea>
+                                        </div>
+                                        <div class="btn-group right">
+                                            <button class="btn small btn_write">수정</button>
+                                            <button class="btn small btn_cancel" onclick="btnReplyModifyCancel('112')">취소</button>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="reply-btns">
                                     <div class="btn-group left">
-                                        <button class="btn small">수정</button>
+                                        <button class="btn small" onclick="btnReplyModify('112');">수정</button>
                                         <button class="btn small">삭제</button>
                                     </div>
                                 </div>
