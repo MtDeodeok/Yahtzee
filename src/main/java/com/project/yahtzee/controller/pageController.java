@@ -66,4 +66,8 @@ public class PageController {
 	}
 
 	
+	@GetMapping(value = {"/","/login"})
+	public String login() {
+		return "login";
+	}
 }

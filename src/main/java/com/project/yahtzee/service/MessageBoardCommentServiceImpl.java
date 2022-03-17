@@ -16,19 +16,21 @@ import lombok.RequiredArgsConstructor;
 public class MessageBoardCommentServiceImpl implements MessageBoardCommentService{
 	
 	private final MessageBoardCommentDAO messageBoardCommentDAO;
-	String modifiyTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+	String writeTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 	
 	
 	@Override
 	public void insertMessageBoardComment(MessageBoardCommentVO messageBoardCommentVO) {
 		// TODO Auto-generated method stub
+		messageBoardCommentVO.setWriteDate(writeTime);
+		messageBoardCommentVO.setModifiyDate(writeTime);
 		messageBoardCommentDAO.insertMessageBoardComment(messageBoardCommentVO);
 	}
 
 	@Override
 	public void updateMessageBoardComment(MessageBoardCommentVO messageBoardCommentVO) {
 		// TODO Auto-generated method stub
-		messageBoardCommentVO.setModifiyDate(modifiyTime);
+		messageBoardCommentVO.setModifiyDate(writeTime);
 		messageBoardCommentDAO.updateMessageBoardComment(messageBoardCommentVO);
 	}
 
@@ -39,9 +41,9 @@ public class MessageBoardCommentServiceImpl implements MessageBoardCommentServic
 	}
 
 	@Override
-	public List<MessageBoardCommentVO> messageBoardCommentList(int messageboardIdx) {
+	public List<MessageBoardCommentVO> messageBoardCommentList() {
 		// TODO Auto-generated method stub
-		return messageBoardCommentDAO.messageBoardCommentList(messageboardIdx);
+		return messageBoardCommentDAO.messageBoardCommentList();
 	}
 	
 	

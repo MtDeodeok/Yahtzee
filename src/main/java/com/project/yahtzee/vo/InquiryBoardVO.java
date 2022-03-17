@@ -3,8 +3,9 @@ package com.project.yahtzee.vo;
 import lombok.Data;
 
 @Data
-public class MessageBoardVO {
+public class InquiryBoardVO {
 	int idx;
+	String title;
 	String userID;
 	String content;
 	String writeDate;

@@ -13,5 +13,5 @@ public interface MessageBoardCommentDAO {
 	void insertMessageBoardComment(MessageBoardCommentVO messageBoardCommentVO);
 	void updateMessageBoardComment(MessageBoardCommentVO messageBoardCommentVO);
 	void deleteMessageBoardComment();
-	List<MessageBoardCommentVO> messageBoardCommentList(@Param("messageboardIdx") int messageboardIdx);
+	List<MessageBoardCommentVO> messageBoardCommentList();
 }

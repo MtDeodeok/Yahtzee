@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>문의 게시판</title>
+</head>
+<body>
+	<ul>
+		<li th:each="boardList : ${inquiryBoardList}">
+			<div>
+				<span>제목</span> <span th:text="${boardList.title}"></span>
+			</div>
+			<div>
+				<span>작성자</span> <span th:text="${boardList.userID}"></span>
+			</div>
+			<div>
+				<span>시간(작성/갱신)</span>
+				<span th:if="${#strings.toString(boardList.writeDate)}==${#strings.toString(boardList.modifiyDate)}" th:text="${boardList.writeDate}"></span>
+				<span th:unless="${#strings.toString(boardList.writeDate)}==${#strings.toString(boardList.modifiyDate)}" th:text="${boardList.modifiyDate}"></span>
+			</div>
+			<div>
+				<span>본문</span> <span th:text="${boardList.content}"></span>
+			</div>
+			<div class="post-btns">
+				<div class="btn-group left" th:if="${session.loginMember.userID}==${boardList.userID}">
+					<button class="btn" >수정</button>
+					<button class="btn">삭제</button>
+				</div>
+			</div>
+		</li>
+
+	</ul>
+
+	<div>
+		<ul class="pagination">
+			<li class="page-item"><a class="page-link"
+				th:href="@{inquiryBoard?page=1}" aria-label="Previous"> <span
+					aria-hidden="true">처음</span>
+			</a></li>
+			<li class="page-item"><a class="page-link"
+				th:href="@{inquiryBoard?page={page} (page = ${pagination.prevBlock})}"
+				aria-label="Previous"> <span aria-hidden="true">이전</span>
+			</a></li>
+			<th:block
+				th:with="start = ${pagination.startPage}, end = ${pagination.endPage}">
+				<li class="page-item"
+					th:with="start = ${pagination.startPage}, end = ${pagination.endPage}"
+					th:each="pageButton : ${#numbers.sequence(start, end)}"><a
+					class="page-link"
+					th:href="@{inquiryBoard?page={page} (page = ${pageButton})}"
+					th:text=${pageButton}></a></li>
+			</th:block>
+			<li class="page-item"><a class="page-link"
+				th:href="@{?page={page} (page = ${pagination.nextBlock})}"
+				aria-label="Next"> <span aria-hidden="true">다음</span>
+			</a></li>
+			<li class="page-item"><a class="page-link"
+				th:href="@{?page={page} (page = ${pagination.totalPageCnt})}"
+				aria-label="Previous"> <span aria-hidden="true">끝</span>
+			</a></li>
+		</ul>
+	</div>
+</body>
+</html>
