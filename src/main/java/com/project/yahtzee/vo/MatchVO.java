@@ -12,4 +12,5 @@ public class MatchVO {
 	int userLose;
 	String lastWinTime;
 	int userRanking;
+	double userWinningRate;
 }

@@ -3,9 +3,10 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
 
 /* style */
 body {
-  padding: 10px;
+  position: relative;
   background: linear-gradient(0, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.15) 100%);
-  height: 100vh;
+  min-width: 720px;
+  min-height: 100vh;
   box-sizing: border-box;
 }
 /* login */
@@ -117,26 +118,35 @@ body {
 .waiting ul li button:hover {
   background: linear-gradient(0, rgb(255, 255, 255) 0%, rgb(235, 235, 235) 70%);
 }
-/* laytou */
+/* layout */
 .layout > header + section {
-  padding: 20px 40px 0;
+  min-height: calc(100vh - 202px);
+  padding: 40px;
+  box-sizing: border-box;
+}
+.layout.is-dialog-open {
+  height: 100vh;
+  overflow: hidden;
 }
 /* header */
 .layout > header {
+  height: 80px;
   padding: 0;
+  background-color: #eee;
   border-bottom: 1px solid #fff;
 }
 .layout .header-logo {
   position: relative;
   display: inline-block;
   vertical-align: middle;
-  padding: 3px 6px;
+  padding: 0 6px;
   color: #fff;
   font-size: 32px;
   text-decoration: none;
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
   overflow: hidden;
+  line-height: 80px;
 }
 .layout .header-logo span {
   position: relative;
@@ -160,15 +170,16 @@ body {
   background: linear-gradient(0, rgb(255, 255, 255) 0%, rgb(150, 150, 150) 100%);
   content: '';
 }
-.layout > header .header-logo + nav {
-  margin-left: 50px;
-}
 /* nav */
 .layout > header nav {
   display: inline-block;
+  width: calc(100% - 200px);
   vertical-align: middle;
+  padding: 0 20px;
 }
 .layout > header nav ul {
+  display: block;
+  text-align: center;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -177,14 +188,15 @@ body {
   display: inline-block;
 }
 .layout > header nav ul li + li {
-  margin-left: 20px;
+  margin-left: 10px;
 }
 .layout > header nav ul li a {
   position: relative;
   display: inline-block;
-  padding: 10px 10px 6px;
+  padding: 10px 20px;
   text-decoration: none;
   font-size: 20px;
+  line-height: 30px;
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
   color: #999;
@@ -209,7 +221,129 @@ body {
 .layout > header nav ul li a.on {
   color: #666;
 }
+/* board */
+.board {
+  padding-bottom: 40px;
+}
+.board .write {
 
+}
+.board .write .editor {
+  margin-bottom: 5px;
+}
+.board .write .editor textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+.board .list {
+  margin-top: 20px;
+  padding: 20px 0;
+  border-top: 1px solid #333;
+}
+.board .list ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.board .list ul .post {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 20px;
+}
+.board .list ul .post + .post {
+  margin-top: 20px;
+}
+.board .list ul .post .post-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  border-bottom: 1px dotted #999;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+.board .list ul .post .post-body {
+  border-bottom: 1px solid #999;
+  padding: 10px 0 20px;
+  margin-bottom: 10px;
+}
+.board .list ul .post .post-info .time {
+  font-size: 12px;
+  color: #999;
+}
+.board .list ul.reply-list {
+  padding-left: 30px;
+}
+.board .list .reply-list .reply {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 12px;
+  border: 1px solid #aaa;
+}
+.board .list .reply-list .reply .reply-info {
+  border-bottom: 1px dotted #999;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+.board .list .reply-list .reply .reply-body {
+  border-bottom: 1px solid #999;
+  padding: 5px 0 20px;
+  margin-bottom: 5px;
+}
+.board .list .reply-list .reply .reply-btns {
+  display: flex;
+  justify-content: space-between;
+}
+.board .list .reply-list .reply .reply-body .reply-write {
+  padding-bottom: 0;
+}
+.board .list .reply-write {
+  padding: 10px 0;
+}
+.board .list .reply-write textarea {
+  width: 100%;
+  height: 100px;
+  box-sizing: border-box;
+}
+/* rank */
+.no-rank-data {
+  text-align: center;
+  padding: 150px 40px;
+  font-size: 26px;
+}
+.rank-list {
+  width: 100%;
+}
+.rank-list thead th:first-child {
+  width: 80px;
+}
+.rank-list thead th:first-child + th {
+  width: 300px;
+}
+.rank-list tbody td:first-child {
+  text-align: center;
+}
+.rank-list tbody tr:nth-child(1) td {
+  font-size: 40px;
+}
+.rank-list tbody tr:nth-child(2) td {
+  font-size: 32px;
+}
+.rank-list tbody tr:nth-child(3) td {
+  font-size: 26px;
+}
+/* footer */
+.layout > footer {
+  margin-top: 40px;
+  height: 80px;
+  background: rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
 /* button */
 .btn {
 	display: inline-block;
@@ -227,6 +361,12 @@ body {
 	height: 40px;
 	line-height: 40px;
 }
+.btn.small {
+  font-size: 12px;
+  padding: 0 10px;
+  height: 28px;
+  line-height: 28px;
+}
 .btn:hover {
 	box-shadow: inset 0px 0px 10px 2px rgb(255 255 255 / 70%);
 }
@@ -239,15 +379,24 @@ body {
 .btn.login {
 	border-radius: 20px;
 }
-
+.btn.btn_full {
+  width: 100%;
+}
 /* btn-group */
 .btn-group {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
+.btn-group.left {
+	justify-content: flex-start;
+}
 .btn-group.right {
 	justify-content: flex-end;
+}
+.post-btns {
+  display: flex;
+  justify-content: space-between;
 }
 .btn-group .btn + .btn {
 	margin-left: 15px;
@@ -261,4 +410,78 @@ body {
 .btn-group.type-vertical .btn + .btn {
 	margin-left: 0;
 	margin-top: 10px;
+}
+/* dialog */
+.is-dialog-open .dialog-dimm {
+  display: block;
+}
+.dialog-dimm {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+}
+.dialog-dimm .dialog-wrap {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+.dialog-dimm .dialog-area {
+  position: absolute;
+  top: 34%;
+  left: 50%;
+  margin-left: -190px;
+  width: 380px;
+  background: #fff;
+  border-radius: 5px;
+}
+.dialog-dimm .dialog-area header {
+  position: relative;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 20px;
+  border-bottom: 1px solid #aaa;
+}
+.dialog-dimm .dialog-area header .btn_close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+.dialog-dimm .dialog-area header .btn_close::before {
+  content: '✕';
+}
+.dialog-dimm .dialog-area header .btn_close span {
+  position: absolute;
+  top: 100%;
+  left: 100%;
+}
+.dialog-dimm .dialog-area .dialog-body {
+  padding: 40px;
+}
+.dialog-dimm .dialog-area .dialog-body label {
+  display: block;
+  margin-bottom: 15px;
+}
+.dialog-dimm .dialog-area .dialog-body label + input {
+  display: block;
+  width: 100%;
+  padding: 4px 6px;
+  box-sizing: border-box;
+  font-size: 28px;
+  line-height: 38px;
+}
+.dialog-dimm .dialog-area .dialog-body .gameRoomName-msg {
+  font-size: 12px;
+  color:rgb(255, 102, 0);
+}
+.dialog-dimm .dialog-area .dialog-body .btn-group {
+  margin-top: 20px;
 }
