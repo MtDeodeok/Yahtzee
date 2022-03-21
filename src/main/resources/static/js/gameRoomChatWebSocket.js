@@ -1,16 +1,19 @@
+const urlParams = new URLSearchParams($(location).attr('search'));
+const bang_id = urlParams.get("bang_id"); 
 var webSocket = {
 	init: function(param) {
 		console.log(param);
 		this._url = param.url;
+		
 		this._initSocket();
 	},
 	gameStart: function(){
 		console.log('GameStart');
-		this._gameStart('${param.bang_id}', 'GAME_START');
+		this._gameStart(bang_id, 'GAME_START');
 	},
 	rollingDice: function() {
 		console.log('rollingDice call!');
-		this._fixedDiceRolling('${param.bang_id}', 'FIXED_DICE_ROLLING',9);	
+		this._fixedDiceRolling(bang_id, 'FIXED_DICE_ROLLING',9);	
 	},
 	ones:function(){
 		console.log('ones call!');
@@ -22,7 +25,7 @@ var webSocket = {
 			Number($('#dicebtn5').val())
 			];
 		console.log(dices);
-		this._ones('${param.bang_id}', 'ONES', dices);
+		this._ones(bang_id, 'ONES', dices);
 	},
 	twos:function(){
 		console.log('twos call!');
@@ -34,7 +37,7 @@ var webSocket = {
 			Number($('#dicebtn5').val())
 			];
 		console.log(dices);
-		this._twos('${param.bang_id}', 'TWOS', dices);
+		this._twos(bang_id, 'TWOS', dices);
 	},
 	threes:function(){
 		console.log('threes call!');
@@ -46,7 +49,7 @@ var webSocket = {
 			Number($('#dicebtn5').val())
 			];
 		console.log(dices);
-		this._threes('${param.bang_id}', 'THREES', dices);
+		this._threes(bang_id, 'THREES', dices);
 	},
 	fours:function(){
 		console.log('fours call!');
@@ -58,7 +61,7 @@ var webSocket = {
 			Number($('#dicebtn5').val())
 			];
 		console.log(dices);
-		this._fours('${param.bang_id}', 'FOURS', dices);
+		this._fours(bang_id, 'FOURS', dices);
 	},
 	fives:function(){
 		console.log('fives call!');
@@ -70,7 +73,7 @@ var webSocket = {
 			Number($('#dicebtn5').val())
 			];
 		console.log(dices);
-		this._fives('${param.bang_id}', 'FIVES', dices);
+		this._fives(bang_id, 'FIVES', dices);
 	},
 	sixs:function(){
 		console.log('sixs call!');
@@ -82,15 +85,15 @@ var webSocket = {
 			Number($('#dicebtn5').val())
 			];
 		console.log(dices);
-		this._sixs('${param.bang_id}', 'SIXS', dices);
+		this._sixs(bang_id, 'SIXS', dices);
 	},
 	sendChat: function() {
-		console.log('${param.bang_id}');
-		this._sendMessage('${param.bang_id}', 'USER_CHAT_MSG', $('#message').val());
+		console.log(bang_id);
+		this._sendMessage(bang_id, 'USER_CHAT_MSG', $('#message').val());
 		$('#message').val('');
 	},
 	sendEnter: function() {
-		this._sendMessage('${param.bang_id}', 'GAME_ROOM_ENTER', $('#message').val());
+		this._sendMessage(bang_id, 'GAME_ROOM_ENTER', $('#message').val());
 		$('#message').val('');
 	},
 	receiveMessage: function(msgData) {
@@ -282,5 +285,5 @@ var webSocket = {
 };
 
 $(window).on('load', function() {
-	webSocket.init({ url: "/webSocket" });
+	webSocket.init({ url: $(location).attr('pathname')+""+$(location).attr('search')});
 });

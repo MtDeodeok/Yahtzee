@@ -10,7 +10,7 @@
     <script src="/js/jquery-3.5.1.min.js"></script>
     <script src="/js/gameRoomWSK.js"></script>
     <link rel="stylesheet" th:href="@{/css/style.css}">
-	<script type="text/javascript">
+    <script type="text/javascript">
 		function join(bangID) {
 			var href = "/webSocket?bang_id=" + bangID;
 			location.href = href;
@@ -20,14 +20,10 @@
 <body>
 	<div class="layout">
 		<div th:replace="/common/header :: headerFragment"></div>
-		<form action="gameRoomCreate" method="post">
-			방이름<input type="text" name="gameRoomName">
-			<button type="submit">만들기</button>
-		</form>
 		<section>
 			<h1>대기실</h1>
 			<div class="btn-group right">
-				<button class="btn">방 만들기</button>
+				<button class="btn btnCreateRoom">방 만들기</button>
 			</div>
 			<div class="waiting" >
 				<!-- 방이 있는 경우 -->
@@ -42,12 +38,30 @@
 				<div th:unless="${!roomList.empty}" class="empty-room">
 					생성된 방이 없어요 ╮(╯▽╰)╭
 					<div class="btn-group">
-						<button class="btn">방 만들기</button>
+						<button class="btn btnCreateRoom">방 만들기</button>
 					</div>
 				</div>
 	        	<!-- // 방이 없는 경우 -->
-			</div>
-		</section>
+				</div>
+				<div class="dialog-dimm">
+	                <div class="dialog-wrap">
+	                    <div class="dialog-area">
+	                        <header>
+	                            방 만들기
+	                            <button class="btn_close"><span>닫기</span></button>
+	                        </header>
+	                        <div class="dialog-body">
+	                            <label for="gameRoomName">방 제목</label>
+	                            <input id="gameRoomName" type="text" />
+	                            <span class="gameRoomName-msg"></span>
+	                            <div class="btn-group">
+	                                <button class="btn btnCreateRoomSubmit">방 만들기</button>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+			</section>
 		<div th:replace="/common/footer :: footerFragment"></div>
 	</div>
 </body>
