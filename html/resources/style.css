@@ -307,6 +307,12 @@ div, a, input, textarea, button {
   height: 100px;
 }
 /* rank */
+.no-rank-data,
+.rank-list {
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 5px;
+}
 .no-rank-data {
   text-align: center;
   padding: 150px 40px;
