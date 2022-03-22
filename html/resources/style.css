@@ -485,3 +485,103 @@ body {
 .dialog-dimm .dialog-area .dialog-body .btn-group {
   margin-top: 20px;
 }
+/* inquiry */
+.inquiry {
+  padding: 30px;
+}
+.inquiry .filter {
+  display: flex;
+  margin-bottom: 20px;
+  align-items: center;
+  justify-content: flex-end;
+}
+.inquiry .filter .search {
+  margin-left: 20px;
+}
+.inquiry .filter .search input {
+  width: 300px;
+  margin-right: 8px;
+}
+.inquiry .filter > select {
+  width: 200px;
+  margin-left: 30px;
+}
+.inquiry > table {
+  background: #fff;
+  width: 100%;
+  border-collapse:collapse;
+}
+.inquiry.list > table {
+  margin: 16px 0;
+}
+.inquiry.list > table thead th {
+  background: #eee;
+  border-bottom: 1px solid #999;
+  padding: 10px 0;
+}
+.inquiry.list > table thead th:nth-child(1) {
+  width: 120px;
+}
+.inquiry.list > table thead th:nth-child(2) {
+  text-align: left;
+  text-indent: 15px;
+}
+.inquiry.list > table thead th:nth-child(3) {
+  width: 180px;
+}
+.inquiry.list > table thead th:nth-child(4) {
+  width: 180px;
+}
+.inquiry.list > table tbody td {
+  padding: 10px 15px;
+}
+.inquiry.list > table tbody td:nth-child(1),
+.inquiry.list > table tbody td:nth-child(4) {
+  text-align: center;
+}
+.inquiry.list > table tbody tr td {
+  border-bottom: 1px solid #ccc;
+}
+.inquiry.list > table tbody tr.CA a,
+.inquiry.list > table tbody tr.CA td {
+  color: #ccc;
+}
+.inquiry.list > table tbody tr:hover td {
+  background: rgba(111, 111, 111, 0.05);
+}
+.inquiry.list > table tbody td a {
+  display: block;
+  color: rgb(10, 109, 190);
+  text-decoration: none;
+}
+.inquiry.list > table tbody td a:hover {
+  text-decoration: underline;
+}
+/* pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+.pagination a {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  box-sizing: border-box;
+  padding: 4px 6px;
+  border-radius: 50px;
+  text-decoration: none;
+  text-align: center;
+  background: #fff;
+  color: #999;
+}
+.pagination a:hover {
+  background: #eee;
+  color: #000;
+}
+.pagination a.on {
+  background: #999;
+  color: #eee;
+}
+.pagination a + a {
+  margin-left: 8px;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./resources/js/jquery-3.5.1.min.js"></script>
+    <script src="./resources/js/gameRoomWSK.js"></script>
+    <link rel="stylesheet" href="./resources/style.css">
+</head>
+<body>
+    <div class="layout">
+        <header>
+            <a class="header-logo" href="#"><span>Yacht?!</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#">대기실</a></li>
+                    <li><a href="#">순위</a></li>
+                    <li><a href="#">자유게시판</a></li>
+                    <li><a class="on" href="#">문의</a></li>
+                </ul>
+            </nav>
+        </header>
+        <section class="inquiry list">
+            <h1>문의</h1>
+
+            <!-- 관리자만 -->
+            <div class="filter">
+                <div class="search">
+                    <input type="search" /><button>검색</button>
+                </div>
+                <select name="" id="inquiry-filter">
+                    <option value="1">대기</option>
+                    <option value="2">확인 중</option>
+                    <option value="3">답변 완료</option>
+                </select>
+            </div>
+            <!-- // 관리자만 -->
+
+            <div class="btn-group right">
+                <button class="btn">문의하기</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>상태</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th>작성시간</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span>대기</span></td>
+                        <td><a href="#"><span>아 안대요</span></a></td>
+                        <td><span>가나다</span></td>
+                        <td><span>2022. 2. 2 22:22:22</span></td>
+                    </tr>
+                    <!-- 관리자인 경우, 답변 완료 게시물에 CA 클래스 추가 -->
+                    <tr class="CA">
+                        <td><span>답변 완료</span></td>
+                        <td><a href="#"><span>아 안대요</span></a></td>
+                        <td><span>가나다</span></td>
+                        <td><span>2022. 2. 2 22:22:22</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="btn-group right">
+                <button class="btn">문의하기</button>
+            </div>
+            <div class="pagination">
+                <a href="#">&lt;</a>
+                <a href="#">1</a>
+                <a href="#">2</a>
+                <a href="#" class="on">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">&gt;</a>
+            </div>
+        </section>
+        <footer>
+            Project Yacht?!
+        </footer>
+    </div>
+    
+</body>
+</html>
