@@ -1,42 +1,34 @@
-//삭제
-function deleteBoard(boardIdx){
-		console.log("클릭됨")
+$(document).ready(function() {
+	
+	// 문의게시판 게시글 클릭시
+	$("#inquiryBoardList tr").on("click", function() {
+		var idx = $(this).attr("id");
 		$.ajax({
-			url: "deleteMessageBoard",
+			url: "inquiryBoardView",
 			type: "post",
+			dataType : "json",
 			data: {
-				boardIdx : boardIdx
+				idx : idx
 			},
 			success: function(response) {
-				console.log("정상")
+				console.log("정상");
+				console.log(response["inquriry"]);
+				location.href="inquiryBoardView";
 			},
 			error: function() {
 				console.log("error");
 			}
 		})
-}
-
-$(document).ready(function() {
-	let editor;
-	ClassicEditor
-		.create(document.querySelector('#contents'), {
-			language: 'ko',
-			toolbar: ['bold', 'italic', 'link']
-		})
-		.then(newEditor => {
-			editor = newEditor;
-		})
-		.catch(error => {
-			console.error(error);
-		});
-
-	// 제출 버튼
-	$("#write").click(function() {
+		
+	});
+	
+	//문의게시판 검색
+	$("#inquirySearch").click(function() {
 		$.ajax({
-			url: "writeInquiryBoard",
-			type: "post",
+			url: "inquiryBoardSearch",
+			type: "get",
 			data: {
-				content: editor.getData()
+				search : $("#inquirySearchValue").val()
 			},
 			success: function(response) {
 				console.log("정상")
@@ -46,4 +38,25 @@ $(document).ready(function() {
 			}
 		})
 	});
+	
 })
+
+//삭제
+function deleteBoard(boardIdx){
+		console.log("클릭됨")
+		$.ajax({
+			url: "inquiryBoardDelete",
+			type: "post",
+			data: {
+				boardIdx : boardIdx
+			},
+			success: function(response) {
+				console.log("정상")
+				location.href = "inquiryBoard"
+			},
+			error: function() {
+				console.log("error");
+			}
+		})
+}
+

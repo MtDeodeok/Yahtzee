@@ -1,72 +1,37 @@
-
-// 수정버튼
-function modifiyBoard(idx) {
-	let boardIdx = '#content'+idx;
-	
-	console.log("클릭됨");
-	console.log(boardIdx);
-	ClassicEditor
-		.create(document.querySelector(boardIdx), {
-			language: 'ko',
-			toolbar: ['bold', 'italic', 'link']
-		})
-		.then(newEditor => {
-			editor = newEditor;
-		})
-		.catch(error => {
-			console.error(error);
-		});
-}
-
-//삭제
-function deleteBoard(boardIdx) {
-	console.log("클릭됨");
-	$.ajax({
-		url: "deleteMessageBoard",
-		type: "post",
-		data: {
-			boardIdx: boardIdx
-		},
-		success: function(response) {
-			console.log("정상")
-		},
-		error: function() {
-			console.log("error");
-		}
-	})
-}
-
 $(document).ready(function() {
-
-	let editor;
+	
+	//본문 글쓰기 에디터
+	let editorContent;
 	ClassicEditor
 		.create(document.querySelector('#contents'), {
 			language: 'ko',
 			toolbar: ['bold', 'italic', 'link']
 		})
 		.then(newEditor => {
-			editor = newEditor;
+			editorContent = newEditor;
 		})
 		.catch(error => {
 			console.error(error);
 		});
-
+	
+		
 	// 제출 버튼
 	$("#write").click(function() {
 		$.ajax({
 			url: "writeBoard",
 			type: "post",
 			data: {
-				content: editor.getData()
+				content: editorContent.getData()
 			},
-			success: function(response) {
-				console.log("정상")
+			success: function() {
+				console.log("success!")
+				location.href = "messageBoard"
 			},
 			error: function() {
-				console.log("error");
+				console.log("error!");
 			},
 			complete: function() {
-				location.href = "messageBoard"
+				console.log("complete!")
 			}
 		})
 	});
@@ -170,4 +135,87 @@ $(document).ready(function() {
 			}
 		});
 	});
+	
 })
+
+// 수정버튼
+function modifiyBoard(idx) {
+	console.log("클릭됨");
+	
+	
+}
+
+//삭제
+function deleteBoard(boardIdx) {
+	console.log("클릭됨");
+	$.ajax({
+		url: "deleteMessageBoard",
+		type: "post",
+		data: {
+			boardIdx: boardIdx
+		},
+		success: function() {
+			console.log("정상")
+		},
+		error: function() {
+			console.log("error");
+		}
+	})
+}
+
+// 덧글쓰기 버튼
+function replyComment(idx) {
+	console.log("덧글 쓰기");
+	
+	if($("#reply"+idx).css("display") == "none"){  
+		$("#btnReplyComment"+idx).hide();
+		$("#btnReplyCommentCancel"+idx).show(); 
+		$("#reply"+idx).show();  
+		
+		/*if($("commentEditor"+idx) 여기 아래 자식 div class가 ck가 존재하는지 존재안하면 실행 ){
+			let editorComment;
+			ClassicEditor
+			.create(document.querySelector('#comment'+idx), {
+				language: 'ko',
+				toolbar: ['bold', 'italic', 'link']
+			})
+			.then(newEditor => {
+				editorComment = newEditor;
+			})
+			.catch(error => {
+				console.error(error);
+			});
+		}*/
+	};
+		
+}
+// 덧글쓰기 취소
+function replyCommentCancel(idx) {
+	$("#btnReplyComment"+idx).show();
+	$("#btnReplyCommentCancel"+idx).hide();
+	$("#reply"+idx).hide();
+}
+
+//덧글 글쓰기 버튼
+function commentWrite(idx) {
+	console.log("댓글 글쓰기");
+	
+	$.ajax({
+		url: "writeBoardComment",
+		type: "post",
+		data: {
+			comment : editorComment.getData(),
+			boardIdx : idx
+		},
+		success: function() {
+			console.log("success!")
+			location.href = "messageBoard"
+		},
+		error: function() {
+			console.log("error!");
+		},
+		complete: function() {
+			console.log("complete!")
+		}
+	});
+}

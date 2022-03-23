@@ -33,32 +33,51 @@ import lombok.RequiredArgsConstructor;
 public class InquiryBoardController {
 
 	private final InquiryBoardService inquiryBoardService;
-	
+	InquiryBoardVO inquiryBoardVO = new InquiryBoardVO();
 	
 	@RequestMapping(value="inquiryBoard", method= RequestMethod.GET)
-	public void messageBoard(Model model, @RequestParam(defaultValue = "1") int page) {
+	public void inquiryBoard(Model model, @RequestParam(defaultValue = "1") int page) {
 				
 		// 총 게시물 수
 		int totalListCnt = inquiryBoardService.inquiryBoardCount();
 		// 생성인자로 총 게시물 수 , 현재 페이지 전달
 		Pagination pagination = new Pagination(totalListCnt, page);
 		
-		model.addAttribute("pagination", pagination);
-		
 		int startIndex = pagination.getStartIndex();
 		int pageSize = pagination.getPageSize();
 		
 		List<InquiryBoardVO> boardList = inquiryBoardService.findListPaging(startIndex, pageSize);
 		model.addAttribute("inquiryBoardList", boardList);
+		model.addAttribute("pagination", pagination);
 	}
 	
-	@GetMapping("writeInquiryBoard")
-	public void writeInquiryBoard() {
+	@RequestMapping(value="inquiryBoardSearch", method= RequestMethod.GET)
+	public String inquiryBoardSearch(HttpServletRequest request, Model model, @RequestParam(defaultValue = "1") int page) {
+		String search = request.getParameter("search");
+		
+		int totalListCnt = inquiryBoardService.inquiryBoardCount();
+		Pagination pagination = new Pagination(totalListCnt, page);
+		
+		int startIndex = pagination.getStartIndex();
+		int pageSize = pagination.getPageSize();
+		Map<String,Object> parameter = new HashMap();
+		parameter.put("search", search);
+		parameter.put("startIndex", startIndex);
+		parameter.put("pageSize", pageSize);
+		
+		List<InquiryBoardVO> boardList = inquiryBoardService.searchInquiryList(parameter);
+		model.addAttribute("inquiryBoardList", boardList);
+		model.addAttribute("pagination", pagination);
+		return "inquiryBoard";
+	}
+	
+	@GetMapping("inquiryBoardWrite")
+	public void inquiryBoardWrite() {
 		
 	}
 	
-	@PostMapping("writeInquiryBoard")
-	public String writeInquiryBoard(HttpServletRequest request, HttpSession session, InquiryBoardVO inquiryBoardVO) {
+	@PostMapping("inquiryBoardWrite")
+	public void writeInquiryBoard(HttpServletRequest request, HttpSession session, InquiryBoardVO inquiryBoardVO) {
 		MemberVO member = (MemberVO) session.getAttribute("loginMember");
 		String content = request.getParameter("content");
 		content = content.replaceAll("&lt;", "<");
@@ -66,13 +85,28 @@ public class InquiryBoardController {
 		inquiryBoardVO.setContent(content);
 		inquiryBoardVO.setUserID(member.getUserID());
 		inquiryBoardService.insertInquiryBoard(inquiryBoardVO);
-		return "inquiryBoard";
 	}
 
-	@PostMapping("deleteInquiryBoard")
+	@PostMapping("inquiryBoardDelete")
 	public String deleteInquiryBoard(@RequestParam(value="boardIdx")String boardIdx) {
 		int idx = Integer.parseInt(boardIdx);
+		
 		inquiryBoardService.deleteInquiryBoard(idx);
-		return "messageBoard";
+		return "inquiryBoard";
+	}
+	@GetMapping("inquiryBoardView")
+	public void inquiryBoardView(Model model) {
+		model.addAttribute("inquiryDetails",inquiryBoardVO);
+		System.out.println(model.getAttribute("inquiryDetails"));
+	}
+	
+	@RequestMapping(value="inquiryBoardView", method= RequestMethod.POST)
+	@ResponseBody
+	public JSONObject inquiryBoardView(@RequestParam(value="idx")String boardIdx) {
+		int idx = Integer.parseInt(boardIdx);
+		inquiryBoardVO = inquiryBoardService.viewInquiry(idx);
+		JSONObject inquiryData = new JSONObject();
+		inquiryData.put("inquriry", inquiryBoardVO);
+		return inquiryData;
 	}
 }

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.yahtzee.dao.InquiryBoardDAO">
+	
+	<!-- 신규 게시글 -->
+	<insert id="insertInquiryBoard" parameterType="com.project.yahtzee.vo.InquiryBoardVO">
+		insert into
+		inquiryboard(title,userID, content, writeDate,modifiyDate)
+		values (#{title}, #{userID}, #{content}, #{writeDate},#{writeDate})
+	</insert>
+	
+	<!-- 게시글 10개 리스트 출력 -->
+	<select id="findListPaging" parameterType="int" resultType="com.project.yahtzee.vo.InquiryBoardVO">
+		select * 
+		from inquiryboard
+		order by idx desc, writeDate desc
+		limit #{startIndex},#{pageSize};
+	</select>
+
+	<!-- 게시글 총개수 -->
+	<select id="inquiryBoardCount" resultType="int">
+		select count(*)
+		from inquiryboard
+	</select>
+
+	<!-- 게시글 업데이트 -->
+	<update id="updateInquiryBoard" parameterType="com.project.yahtzee.vo.InquiryBoardVO">
+		update inquiryboard
+		set content=#{content}, modifiyDate=#{modifiyDate} 
+		where idx = #{idx} and userID = #{userID}
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="deleteInquiryBoard" parameterType="int">
+		delete from inquiryboard where idx=#{idx}
+	</delete>
+	
+	<!-- 게시글 찾기 -->
+	<select id="searchInquiryList" parameterType="java.util.HashMap" resultType="com.project.yahtzee.vo.InquiryBoardVO">
+		select * 
+		from inquiryboard
+		where content like %#{search}%
+		order by idx desc, writeDate desc
+		limit #{startIndex},#{pageSize}
+	</select>
+	
+	<!-- 게시글 상세 -->
+	<select id="viewInquiry" parameterType="int" resultType="com.project.yahtzee.vo.InquiryBoardVO">
+		select * 
+		from inquiryboard
+		where idx=#{idx}
+	</select>
+</mapper>
