@@ -208,19 +208,3 @@ function btnReplyModifyCancel(seq) {
     editor.hide();
     content.show();
 }
-
-function rollDice() {
-    const targets = document.querySelectorAll('.dice');
-    const min = 1;
-    const max = 6;
-
-    for(let i = 0; i < targets.length; i++) {
-        var xRand = getRandom(max, min);
-        var yRand = getRandom(max, min);
-        console.log(xRand, yRand);
-        targets[i].style.webkitTransform = 'rotateX('+xRand+'deg) rotateY('+yRand+'deg)';
-        targets[i].style.transform = 'rotateX('+xRand+'deg) rotateY('+yRand+'deg)';
-    }
-
-    return ;
-}

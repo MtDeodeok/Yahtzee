@@ -351,20 +351,20 @@ div, a, input, textarea, button {
 }
 /* button */
 .btn {
-	display: inline-block;
-	box-sizing: border-box;
-	padding: 0 20px;
-	font-size: 16px;
-	font-weight: bold;
-	border: none;
-	-webkit-appearance: none;
-	appearance: none;
-	cursor: pointer;
-	border: 1px solid rgba(0, 0, 0, 0.1);
-	background-color: #eee;
-	border-radius: 5px;
-	height: 40px;
-	line-height: 40px;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #eee;
+  border-radius: 5px;
+  height: 40px;
+  line-height: 40px;
 }
 .btn.small {
   font-size: 12px;
@@ -373,48 +373,48 @@ div, a, input, textarea, button {
   line-height: 28px;
 }
 .btn:hover {
-	box-shadow: inset 0px 0px 10px 2px rgb(255 255 255 / 70%);
+  box-shadow: inset 0px 0px 10px 2px rgb(255 255 255 / 70%);
 }
 .btn.primary,
 .btn.login {
-	color: #fff;
-	background: linear-gradient(50deg, rgb(0, 195, 255) 0%, rgb(37, 80, 223) 35%, rgb(149, 41, 199) 80%);
-	border-width: 0;
+  color: #fff;
+  background: linear-gradient(50deg, rgb(0, 195, 255) 0%, rgb(37, 80, 223) 35%, rgb(149, 41, 199) 80%);
+  border-width: 0;
 }
 .btn.login {
-	border-radius: 20px;
+  border-radius: 20px;
 }
 .btn.btn_full {
   width: 100%;
 }
 /* btn-group */
 .btn-group {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .btn-group.left {
-	justify-content: flex-start;
+  justify-content: flex-start;
 }
 .btn-group.right {
-	justify-content: flex-end;
+  justify-content: flex-end;
 }
 .post-btns {
   display: flex;
   justify-content: space-between;
 }
 .btn-group .btn + .btn {
-	margin-left: 15px;
+  margin-left: 15px;
 }
 .btn-group.type-vertical {
-	flex-direction: column;
+  flex-direction: column;
 }
 .btn-group.type-vertical .btn {
-	width: 100%;
+  width: 100%;
 }
 .btn-group.type-vertical .btn + .btn {
-	margin-left: 0;
-	margin-top: 10px;
+  margin-left: 0;
+  margin-top: 10px;
 }
 /* dialog */
 .is-dialog-open .dialog-dimm {
@@ -645,4 +645,263 @@ div, a, input, textarea, button {
 }
 .pagination a + a {
   margin-left: 8px;
+}
+
+/* game room */
+#gameRoom {
+  position: relative;
+  padding: 20px;
+  min-width: 1280px;
+}
+#gameRoom h1 {
+  border-bottom: 4px solid #fff;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 10px;
+}
+#gameRoom .dices {
+  height: 200px;
+  margin-bottom: 20px;
+}
+#gameRoom .dices .front {
+  transform: translateZ(60px);
+}
+#gameRoom .dices .back {
+  transform: rotateX(-180deg) translateZ(60px);
+}
+#gameRoom .dices .right {
+  transform: rotateY(90deg) translateZ(60px);
+}
+#gameRoom .dices .left {
+  transform: rotateY(-90deg) translateZ(60px);
+}
+#gameRoom .dices .top {
+  transform: rotateX(90deg) translateZ(60px);
+}
+#gameRoom .dices .bottom {
+  transform: rotateX(-90deg) translateZ(60px);
+}
+#gameRoom .dices .dice-wrap {
+  position: relative;
+  margin-right: 20px;
+  padding: 0;
+  border: 0;
+  background: none;
+  appearance: none;
+  width: 200px;
+  height: 200px;
+}
+#gameRoom .dices .dice {
+  position: absolute;
+  display: block;
+  top: 50px;
+  left: 50px;
+  width: 120px;
+  height: 120px;
+  transform-style: preserve-3d;
+  transition: transform 2s;
+}
+#gameRoom .dice:hover {
+  cursor: pointer;
+}
+#gameRoom .dices .dice>div {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.97);
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #eee;
+  margin: 0 auto;
+  text-align: center;
+}
+#gameRoom .dices .dot {
+  display: block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #000;
+  border-radius: 15px;
+  transform: translate(-50%, -50%);
+}
+#gameRoom .dices .front .dot1 {
+  top: 50%;
+  left: 50%;
+}/* 1 */
+#gameRoom .dices .back .dot1 {
+  top: 25%;
+  left: 25%;
+}/* 2 */
+#gameRoom .dices .back .dot2 {
+  top: 75%;
+  left: 75%;
+}/* 2 */
+#gameRoom .dices .right .dot1 {
+  top: 25%;
+  left: 25%;
+}/* 3 */
+#gameRoom .dices .right .dot2 {
+  top: 50%;
+  left: 50%;
+}/* 3 */
+#gameRoom .dices .right .dot3 {
+  top: 75%;
+  left: 75%;
+}/* 3 */
+#gameRoom .dices .left .dot1 {
+  top: 25%;
+  left: 25%;
+}/* 4 */
+#gameRoom .dices .left .dot2 {
+  top: 25%;
+  left: 75%;
+}/* 4 */
+#gameRoom .dices .left .dot3 {
+  top: 75%;
+  left: 25%;
+}/* 4 */
+#gameRoom .dices .left .dot4 {
+  top: 75%;
+  left: 75%;
+}/* 4 */
+#gameRoom .dices .top .dot1 {
+  top: 25%;
+  left: 25%;
+}/* 5 */
+#gameRoom .dices .top .dot2 {
+  top: 25%;
+  left: 75%;
+}/* 5 */
+#gameRoom .dices .top .dot3 {
+  top: 50%;
+  left: 50%;
+}/* 5 */
+#gameRoom .dices .top .dot4 {
+  top: 75%;
+  left: 25%;
+}/* 5 */
+#gameRoom .dices .top .dot5 {
+  top: 75%;
+  left: 75%;
+}/* 5 */
+#gameRoom .dices .bottom .dot1 {
+  top: 25%;
+  left: 25%;
+}/* 6 */
+#gameRoom .dices .bottom .dot2 {
+  top: 25%;
+  left: 50%;
+}/* 6 */
+#gameRoom .dices .bottom .dot3 {
+  top: 25%;
+  left: 75%;
+}/* 6 */
+#gameRoom .dices .bottom .dot4 {
+  top: 75%;
+  left: 25%;
+}/* 6 */
+#gameRoom .dices .bottom .dot5 {
+  top: 75%;
+  left: 50%;
+}/* 6 */
+#gameRoom .dices .bottom .dot6 {
+  top: 75%;
+  left: 75%;
+}/* 6 */
+#gameRoom .sheets-and-chat {
+  display: flex;
+  gap: 20px;
+}
+#gameRoom .sheets-and-chat .yoursheet {
+  min-width: 250px;
+  width: 20%;
+  min-height: 100px;
+  background: #eee;
+  padding: 0 10px;
+}
+#gameRoom .sheets-and-chat .othersheets {
+  display: flex;
+  gap: 10px;
+  min-width: 250px;
+  width: 40%;
+  min-height: 100px;
+}
+#gameRoom .sheets-and-chat .othersheets > div {
+  flex: 1 1 auto;
+  min-width: 150px;
+}
+#gameRoom .sheets-and-chat .sheet-wrap table {
+  background: #fff;
+  width: 100%;
+  border: 1px solid #000;
+}
+#gameRoom .sheets-and-chat .btn-sheet-cell {
+  display: block;
+  width: 100%;
+  height: 28px;
+  line-height: 28px;
+  border: none;
+  color: #999;
+  cursor: pointer;
+}
+#gameRoom .sheets-and-chat .btn-sheet-cell.fixed {
+  cursor: none;
+  color: #000;
+}
+#gameRoom .sheets-and-chat .sheet-wrap > p {
+  margin: 10px 0;
+  font-size: 18px;
+  text-align: center;
+}
+#gameRoom .sheets-and-chat .sheet-wrap table td:first-child {
+  width: 35%;
+}
+#gameRoom .sheets-and-chat .sheet-wrap table td + td {
+  text-align: center;
+  border-left: 1px dashed #999;
+  height: 28px;
+  line-height: 28px;
+}
+#gameRoom .sheets-and-chat .sheet-wrap table tr + tr td {
+  border-top: 1px dashed #999;
+}
+#gameRoom .sheets-and-chat .sheet-wrap .othersheet-top {
+  margin-bottom: 16px;
+}
+#gameRoom .sheets-and-chat .sheet-wrap .othersheet-bottom {/**/}
+#gameRoom .sheets-and-chat .chat {
+  width: 40%;
+  background: #fff;
+  max-height: calc(100vh - 300px);
+  overflow-y: scroll;
+  padding: 10px;
+}
+#gameRoom .sheets-and-chat .chat .wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+#gameRoom .sheets-and-chat .chat .chat-msg {
+  display: flex;
+  gap: 8px;
+  line-height: 24px;
+}
+#gameRoom .sheets-and-chat .chat .chat-msg.system {
+  color: coral;
+  display: flex;
+}
+#gameRoom .sheets-and-chat .chat .chat-msg.user.own {
+  color: forestgreen;
+  display: flex;
+}
+#gameRoom .sheets-and-chat .chat .chat-msg .nick strong {
+  display: inline-block;
+}
+#gameRoom .sheets-and-chat .chat .chat-msg .time {
+  margin-left: 6px;
+  color: #aaa;
+  font-size: 12px;
+}
+#gameRoom .dice-roll-button {
+  margin: 20px 0;
+  text-align: center;
 }

@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>방 제목</title>
+
+    <script src="./resources/js/jquery-3.5.1.min.js"></script>
+    <script src="./resources/js/gameRoomWSK.js"></script>
+    <link rel="stylesheet" href="./resources/style.css">
+</head>
+<body>
+    
+<div id="gameRoom">
+	<h1>방 제목</h1>
+	<div class="dices">
+		<button class="dice-wrap">
+			<div class="dice">
+				<div class="front">
+					<span class="dot dot1"></span>
+				</div>
+				<div class="back">
+					<span class="dot dot1"></span>
+					<span class="dot dot2"></span>
+				</div>
+				<div class="right">
+					<span class="dot dot1"></span>
+					<span class="dot dot2"></span>
+					<span class="dot dot3"></span>
+				</div>
+				<div class="left">
+					<span class="dot dot1"></span>
+					<span class="dot dot2"></span>
+					<span class="dot dot3"></span>
+					<span class="dot dot4"></span>
+				</div>
+				<div class="top">
+					<span class="dot dot1"></span>
+					<span class="dot dot2"></span>
+					<span class="dot dot3"></span>
+					<span class="dot dot4"></span>
+					<span class="dot dot5"></span>
+				</div>
+				<div class="bottom">
+					<span class="dot dot1"></span>
+					<span class="dot dot2"></span>
+					<span class="dot dot3"></span>
+					<span class="dot dot4"></span>
+					<span class="dot dot5"></span>
+					<span class="dot dot6"></span>
+				</div>
+			</div>
+		</button>
+		<button class="dice-wrap">
+			<div class="dice">
+				<div class="front">
+					<span class="dot dot1"></span>
+				</div>
+				<div class="back">
+					<span class="dot dot1"></span>
+					<span class="dot dot2"></span>
+				</div>
+				<div class="right">
+					<span class="dot dot1"></span>
+					<span class="dot dot2"></span>
+					<span class="dot dot3"></span>
+				</div>
+				<div class="left">
+					<span class="dot dot1"></span>
+					<span class="dot dot2"></span>
+					<span class="dot dot3"></span>
+					<span class="dot dot4"></span>
+				</div>
+				<div class="top">
+					<span class="dot dot1"></span>
+					<span class="dot dot2"></span>
+					<span class="dot dot3"></span>
+					<span class="dot dot4"></span>
+					<span class="dot dot5"></span>
+				</div>
+				<div class="bottom">
+					<span class="dot dot1"></span>
+					<span class="dot dot2"></span>
+					<span class="dot dot3"></span>
+					<span class="dot dot4"></span>
+					<span class="dot dot5"></span>
+					<span class="dot dot6"></span>
+				</div>
+			</div>
+		</button>
+		<button class="dice-wrap">
+			<div class="dice">
+				<div class="front">
+					<span class="dot dot1"></span>
+				</div>
+				<div class="back">
+					<span class="dot dot1"></span>
+					<span class="dot dot2"></span>
+				</div>
+				<div class="right">
+					<span class="dot dot1"></span>
+					<span class="dot dot2"></span>
+					<span class="dot dot3"></span>
+				</div>
+				<div class="left">
+					<span class="dot dot1"></span>
+					<span class="dot dot2"></span>
+					<span class="dot dot3"></span>
+					<span class="dot dot4"></span>
+				</div>
+				<div class="top">
+					<span class="dot dot1"></span>
+					<span class="dot dot2"></span>
+					<span class="dot dot3"></span>
+					<span class="dot dot4"></span>
+					<span class="dot dot5"></span>
+				</div>
+				<div class="bottom">
+					<span class="dot dot1"></span>
+					<span class="dot dot2"></span>
+					<span class="dot dot3"></span>
+					<span class="dot dot4"></span>
+					<span class="dot dot5"></span>
+					<span class="dot dot6"></span>
+				</div>
+			</div>
+		</button>
+		<button class="dice-wrap">
+			<div class="dice">
+				<div class="front">
+					<span class="dot dot1"></span>
+				</div>
+				<div class="back">
+					<span class="dot dot1"></span>
+					<span class="dot dot2"></span>
+				</div>
+				<div class="right">
+					<span class="dot dot1"></span>
+					<span class="dot dot2"></span>
+					<span class="dot dot3"></span>
+				</div>
+				<div class="left">
+					<span class="dot dot1"></span>
+					<span class="dot dot2"></span>
+					<span class="dot dot3"></span>
+					<span class="dot dot4"></span>
+				</div>
+				<div class="top">
+					<span class="dot dot1"></span>
+					<span class="dot dot2"></span>
+					<span class="dot dot3"></span>
+					<span class="dot dot4"></span>
+					<span class="dot dot5"></span>
+				</div>
+				<div class="bottom">
+					<span class="dot dot1"></span>
+					<span class="dot dot2"></span>
+					<span class="dot dot3"></span>
+					<span class="dot dot4"></span>
+					<span class="dot dot5"></span>
+					<span class="dot dot6"></span>
+				</div>
+			</div>
+		</button>
+		<button class="dice-wrap">
+			<div class="dice">
+				<div class="front">
+					<span class="dot dot1"></span>
+				</div>
+				<div class="back">
+					<span class="dot dot1"></span>
+					<span class="dot dot2"></span>
+				</div>
+				<div class="right">
+					<span class="dot dot1"></span>
+					<span class="dot dot2"></span>
+					<span class="dot dot3"></span>
+				</div>
+				<div class="left">
+					<span class="dot dot1"></span>
+					<span class="dot dot2"></span>
+					<span class="dot dot3"></span>
+					<span class="dot dot4"></span>
+				</div>
+				<div class="top">
+					<span class="dot dot1"></span>
+					<span class="dot dot2"></span>
+					<span class="dot dot3"></span>
+					<span class="dot dot4"></span>
+					<span class="dot dot5"></span>
+				</div>
+				<div class="bottom">
+					<span class="dot dot1"></span>
+					<span class="dot dot2"></span>
+					<span class="dot dot3"></span>
+					<span class="dot dot4"></span>
+					<span class="dot dot5"></span>
+					<span class="dot dot6"></span>
+				</div>
+			</div>
+		</button>
+	</div>
+	<div class="dice-roll-button">
+		<button class="btn primary" onclick="rollDice();">roll</button>
+	</div>
+
+	<div class="sheets-and-chat">
+		<!-- 본인 점수표 -->
+		<div class="yoursheet">
+			<div class="sheet-wrap own">
+				<p>나</p>
+				<table class="othersheet-top">
+					<tbody>
+						<tr>
+							<td>Aces</td>
+							<td>
+								<button class="btn-sheet-cell">0</button>
+								<!--
+									선택된 버튼 처리
+									<button class="btn-sheet-cell fixed" disabled>0</button>
+								-->
+							</td>
+						</tr>
+						<tr>
+							<td>Twos</td>
+							<td>
+								<button class="btn-sheet-cell">0</button>
+							</td>
+						</tr>
+						<tr>
+							<td>Threes</td>
+							<td>
+								<button class="btn-sheet-cell">0</button>
+							</td>
+						</tr>
+						<tr>
+							<td>Fours</td>
+							<td>
+								<button class="btn-sheet-cell">0</button>
+							</td>
+						</tr>
+						<tr>
+							<td>Fives</td>
+							<td>
+								<button class="btn-sheet-cell">0</button>
+							</td>
+						</tr>
+						<tr>
+							<td>Sixes</td>
+							<td>
+								<button class="btn-sheet-cell">0</button>
+							</td>
+						</tr>
+						<tr>
+							<td>bonus</td>
+							<td>
+								<button class="btn-sheet-cell">0</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<table class="othersheet-bottom">
+					<tbody>
+						<tr>
+							<td>Three-Of-A-Kind</td>
+							<td>
+								<button class="btn-sheet-cell">0</button>
+							</td>
+						</tr>
+						<tr>
+							<td>Four-Of-A-Kind</td>
+							<td>
+								<button class="btn-sheet-cell">0</button>
+							</td>
+						</tr>
+						<tr>
+							<td>Full House</td>
+							<td>
+								<button class="btn-sheet-cell">0</button>
+							</td>
+						</tr>
+						<tr>
+							<td>Small Straight</td>
+							<td>
+								<button class="btn-sheet-cell">0</button>
+							</td>
+						</tr>
+						<tr>
+							<td>Large Straight</td>
+							<td>
+								<button class="btn-sheet-cell">0</button>
+							</td>
+						</tr>
+						<tr>
+							<td>Chance</td>
+							<td>
+								<button class="btn-sheet-cell">0</button>
+							</td>
+						</tr>
+						<tr>
+							<td>Yahtzee</td>
+							<td>
+								<button class="btn-sheet-cell">0</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<!-- 다른 사람 점수표 -->
+		<div class="othersheets">
+			<div class="sheet-wrap player1">
+				<p>player1</p>
+				<table class="othersheet-top">
+					<tbody>
+						<tr>
+							<td>Aces</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Twos</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Threes</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Fours</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Fives</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Sixes</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>bonus</td>
+							<td>0</td>
+						</tr>
+					</tbody>
+				</table>
+				<table class="othersheet-bottom">
+					<tbody>
+						<tr>
+							<td>Three-Of-A-Kind</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Four-Of-A-Kind</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Full House</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Small Straight</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Large Straight</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Chance</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Yahtzee</td>
+							<td>0</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="sheet-wrap player2">
+				<p>player2</p>
+				<table class="othersheet-top">
+					<tbody>
+						<tr>
+							<td>Aces</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Twos</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Threes</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Fours</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Fives</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Sixes</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>bonus</td>
+							<td>0</td>
+						</tr>
+					</tbody>
+				</table>
+				<table class="othersheet-bottom">
+					<tbody>
+						<tr>
+							<td>Three-Of-A-Kind</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Four-Of-A-Kind</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Full House</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Small Straight</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Large Straight</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Chance</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Yahtzee</td>
+							<td>0</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="sheet-wrap player3">
+				<p>player3</p>
+				<table class="othersheet-top">
+					<tbody>
+						<tr>
+							<td>Aces</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Twos</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Threes</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Fours</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Fives</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Sixes</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>bonus</td>
+							<td>0</td>
+						</tr>
+					</tbody>
+				</table>
+				<table class="othersheet-bottom">
+					<tbody>
+						<tr>
+							<td>Three-Of-A-Kind</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Four-Of-A-Kind</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Full House</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Small Straight</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Large Straight</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Chance</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>Yahtzee</td>
+							<td>0</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<!-- 채팅 -->
+		<div class="chat">
+			<div class="wrap">
+				<div class="chat-msg system">
+					<div class="nick">&lt;<strong>SYSTEM</strong>&gt;</div><div class="msg">야찌!!!<span class="time">(22:22:22)</span></div>
+				</div>
+				<div class="chat-msg user own">
+					<div class="nick">[<strong>ㅇㅇㅇ</strong>]:</div><div class="msg">메시지3333<span class="time">(22:22:22)</span></div>
+				</div>
+				<div class="chat-msg user">
+					<div class="nick">[<strong>ㄹㄹㄹ</strong>]:</div><div class="msg">메시지2222<span class="time">(22:22:22)</span></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	
+	function rollDice() {
+		const targets = document.querySelectorAll('.dice');
+		const min = 1;
+		const max = 6;
+
+		for(let i = 0; i < targets.length; i++) {
+			var xRand = getRandom(max, min);
+			var yRand = getRandom(max, min);
+			targets[i].style.webkitTransform = 'rotateX('+xRand+'deg) rotateY('+yRand+'deg)';
+			targets[i].style.transform = 'rotateX('+xRand+'deg) rotateY('+yRand+'deg)';
+		}
+
+		return ;
+	}
+
+	function appendChatMSG(text) {
+		const time = new Date().toLocaleTimeString('ko-KR', 'H:MM:SS');
+		$('.chat .wrap').append(`				<div class="chat-msg system">
+					<div class="nick">[<strong>SYSTEM</strong>]:</div><div class="msg">${text}<span class="time">(${time})</span></div>
+				</div>`);
+		var element = document.querySelector('.chat');
+		element.scrollTop = element.scrollHeight;
+	}
+
+$(window).on('load', function() {
+	rollDice();
+});
+</script>
+</body>
+</html>
