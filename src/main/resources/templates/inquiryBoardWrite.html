@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>문의 글 쓰기</title>
+	<script src="/js/jquery-3.5.1.min.js"></script>
+	<script src="/js/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="/js/inquiryBoardWrite.js"></script>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<div class="layout">
+		<div th:replace="/common/header :: headerFragment"></div>
+		<section class="inquiry write">
+            <div class="title">
+                <input id="title" type="text" placeholder="제목을 입력해주세요" />
+            </div>
+            <div class="editor">
+				<textarea id="contents" name="" placeholder="내용"></textarea>
+			</div>
+			<div class="btn-group right">
+                <button class="btn" onclick="location.href='inquiryBoard'">취소</button>
+                <button class="btn" id="write">문의하기</button>
+			</div>
+        </section>
+			
+		<div th:replace="/common/footer :: footerFragment"></div>
+	</div>
+</body>
+</html>

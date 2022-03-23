@@ -1,64 +1,80 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-<meta charset="UTF-8">
-<title>문의 게시판</title>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>문의 게시판</title>
+    <script src="/js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="/js/inquiryBoard.js"></script>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-	<ul>
-		<li th:each="boardList : ${inquiryBoardList}">
-			<div>
-				<span>제목</span> <span th:text="${boardList.title}"></span>
+	<div class="layout">
+		<div th:replace="/common/header :: headerFragment"></div>
+		
+		<section class="inquiry list">
+			<h1>문의</h1>
+			
+			<!-- 관리자만 -->
+            <div class="filter" th:if="${session.loginMember.userState}==1">
+                <div class="search">
+                    <input type="search" id="inquirySearchValue" /><button id="inquirySearch">검색</button>
+                </div>
+                <select name="" id="inquiry-filter">
+                    <option value="1">대기</option>
+                    <option value="2">확인 중</option>
+                    <option value="3">답변 완료</option>
+                </select>
+            </div>
+            <!-- // 관리자만 -->
+            
+            <div class="btn-group right">
+                <button class="btn" onclick="location.href='inquiryBoardWrite'">문의하기</button>
+            </div>
+            <table id="inquiryBoardList">
+                <thead>
+                    <tr>
+                        <th>상태</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th>작성(수정)시간</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:id="${boardList.idx}" th:each="boardList : ${inquiryBoardList}">
+                    <th:block th:switch="${boardList.state}">
+                    	<td th:case="1" >대기</td>
+                    	<td th:case="2" >확인 중</td>
+                    	<td th:case="3" >답변 완료</td>
+                    </th:block>
+                    	<td th:text="${boardList.title}"></td>
+                    	<td th:text="${boardList.userID}"></td>
+                    	<td th:if="${#strings.toString(boardList.writeDate)}==${#strings.toString(boardList.modifiyDate)}" th:text="${boardList.writeDate}"></td>
+						<td th:unless="${#strings.toString(boardList.writeDate)}==${#strings.toString(boardList.modifiyDate)}" th:text="${boardList.modifiyDate}"></td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<div class="btn-group right">
+                <button class="btn" onclick="location.href='inquiryBoardWrite'">문의하기</button>
+            </div>
+            
+            <div class="pagination">
+				<a th:href="@{inquiryBoard?page={page} (page = ${pagination.prevBlock})}" aria-label="Previous">
+					<span aria-hidden="true">&lt;</span>
+				</a>
+				<th:block th:with="start = ${pagination.startPage}, end = ${pagination.endPage}">
+					<a th:with="start = ${pagination.startPage}, end = ${pagination.endPage}"
+						th:each="pageButton : ${#numbers.sequence(start, end)}" 
+						th:href="@{inquiryBoard?page={page} (page = ${pageButton})}"
+						th:text="${pageButton}+' '">
+					 </a>
+				</th:block>
+				<a th:href="@{?page={page} (page = ${pagination.nextBlock})}" aria-label="Next">&gt;</a>
 			</div>
-			<div>
-				<span>작성자</span> <span th:text="${boardList.userID}"></span>
-			</div>
-			<div>
-				<span>시간(작성/갱신)</span>
-				<span th:if="${#strings.toString(boardList.writeDate)}==${#strings.toString(boardList.modifiyDate)}" th:text="${boardList.writeDate}"></span>
-				<span th:unless="${#strings.toString(boardList.writeDate)}==${#strings.toString(boardList.modifiyDate)}" th:text="${boardList.modifiyDate}"></span>
-			</div>
-			<div>
-				<span>본문</span> <span th:text="${boardList.content}"></span>
-			</div>
-			<div class="post-btns">
-				<div class="btn-group left" th:if="${session.loginMember.userID}==${boardList.userID}">
-					<button class="btn" >수정</button>
-					<button class="btn" th:onclick="deleteBoard([[${boardList.idx}]])">삭제</button>
-				</div>
-			</div>
-		</li>
-
-	</ul>
-
-	<div>
-		<ul class="pagination">
-			<li class="page-item"><a class="page-link"
-				th:href="@{inquiryBoard?page=1}" aria-label="Previous"> <span
-					aria-hidden="true">처음</span>
-			</a></li>
-			<li class="page-item"><a class="page-link"
-				th:href="@{inquiryBoard?page={page} (page = ${pagination.prevBlock})}"
-				aria-label="Previous"> <span aria-hidden="true">이전</span>
-			</a></li>
-			<th:block
-				th:with="start = ${pagination.startPage}, end = ${pagination.endPage}">
-				<li class="page-item"
-					th:with="start = ${pagination.startPage}, end = ${pagination.endPage}"
-					th:each="pageButton : ${#numbers.sequence(start, end)}"><a
-					class="page-link"
-					th:href="@{inquiryBoard?page={page} (page = ${pageButton})}"
-					th:text=${pageButton}></a></li>
-			</th:block>
-			<li class="page-item"><a class="page-link"
-				th:href="@{?page={page} (page = ${pagination.nextBlock})}"
-				aria-label="Next"> <span aria-hidden="true">다음</span>
-			</a></li>
-			<li class="page-item"><a class="page-link"
-				th:href="@{?page={page} (page = ${pagination.totalPageCnt})}"
-				aria-label="Previous"> <span aria-hidden="true">끝</span>
-			</a></li>
-		</ul>
+		</section>
+		<div th:replace="/common/footer :: footerFragment"></div>
 	</div>
 </body>
 </html>

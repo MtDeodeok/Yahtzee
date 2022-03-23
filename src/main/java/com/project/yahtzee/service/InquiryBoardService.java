@@ -1,8 +1,7 @@
 package com.project.yahtzee.service;
 
 import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
+import java.util.Map;
 
 import com.project.yahtzee.vo.InquiryBoardVO;
 
@@ -11,6 +10,8 @@ public interface InquiryBoardService {
 	void updateInquiryBoard(InquiryBoardVO inquiryBoardVO);
 	void deleteInquiryBoard(int idx);
 	List<InquiryBoardVO> inquiryBoardList();
-	List<InquiryBoardVO> findListPaging(@Param("startIndex")int startIndex, @Param("pageSize")int pageSize);
+	List<InquiryBoardVO> findListPaging(int startIndex, int pageSize);
+	List<InquiryBoardVO> searchInquiryList(Map<String,Object> parameter);
+	InquiryBoardVO viewInquiry(int idx);
 	int inquiryBoardCount();
 }

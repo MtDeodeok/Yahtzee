@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>상세 페이지</title>
+	<script src="/js/jquery-3.5.1.min.js"></script>
+	<script src="/js/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="/js/inquiryBoard.js"></script>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<div class="layout">
+		<div th:replace="/common/header :: headerFragment"></div>
+		
+		<section class="inquiry view">
+			<div class="title">
+				<h1 th:text="${inquiryDetails.title}"></h1>
+			</div>
+			<div class="inquiry-body">
+                <div class="content" th:text="${inquiryDetails.content}"></div>
+            </div>
+			<!-- 관리자 전용 -->
+            <div class="answer" th:if="${session.loginMember.userState}==1">
+                <div class="btn-group left">
+                    <th:block th:switch="${inquiryDetails.state}">
+                    	<button th:case="1" class="btn">대기</button>
+                    	<button th:case="2" class="btn">확인 중</button>
+                    	<button th:case="3" class="btn">답변 완료</button>
+                    </th:block>
+                </div>
+                <div class="editor-wrap">
+                    <div class="editor">
+                        <textarea name="" id="" cols="30" rows="10"></textarea>
+                    </div>
+                    <div class="btn-group right">
+                        <button class="btn">답변하기</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+			
+		<div th:replace="/common/footer :: footerFragment"></div>
+	</div>
+</body>
+</html>

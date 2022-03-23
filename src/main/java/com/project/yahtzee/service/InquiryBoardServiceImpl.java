@@ -3,6 +3,7 @@ package com.project.yahtzee.service;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,8 @@ public class InquiryBoardServiceImpl implements InquiryBoardService{
 	@Override
 	public void insertInquiryBoard(InquiryBoardVO inquiryBoardVO) {
 		// TODO Auto-generated method stub
-		
+		inquiryBoardVO.setWriteDate(now);
+		inquiryBoardDAO.insertInquiryBoard(inquiryBoardVO);
 	}
 
 	@Override
@@ -43,6 +45,7 @@ public class InquiryBoardServiceImpl implements InquiryBoardService{
 		return inquiryBoardDAO.findListPaging(startIndex, pageSize);
 	}
 	
+	
 	@Override
 	public List<InquiryBoardVO> inquiryBoardList() {
 		// TODO Auto-generated method stub
@@ -53,6 +56,19 @@ public class InquiryBoardServiceImpl implements InquiryBoardService{
 	public int inquiryBoardCount() {
 		// TODO Auto-generated method stub
 		return inquiryBoardDAO.inquiryBoardCount();
+	}
+
+	@Override
+	public List<InquiryBoardVO> searchInquiryList(Map<String,Object> parameter) {
+		// TODO Auto-generated method stub
+		
+		return inquiryBoardDAO.searchInquiryList(parameter);
+	}
+
+	@Override
+	public InquiryBoardVO viewInquiry(int idx) {
+		// TODO Auto-generated method stub
+		return inquiryBoardDAO.viewInquiry(idx);
 	}
 
 	
