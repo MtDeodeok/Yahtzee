@@ -58,7 +58,7 @@ public class MessageBoardController {
 	
 	@RequestMapping(value="messageBoard", method= RequestMethod.POST)
 	@ResponseBody
-	public JSONObject messageBoard(HttpSession session, @RequestParam(value="startNum", required=false)String startNum) {
+	public JSONObject messageBoard(HttpSession session, @RequestParam(value="startNum")String startNum) {
 		MemberVO member = (MemberVO) session.getAttribute("loginMember");
 		int totalListCnt = messageBoardService.messageBoardCount();
 		int startListNum = Integer.parseInt(startNum);
@@ -73,7 +73,7 @@ public class MessageBoardController {
 	}
 	
 	@PostMapping("writeBoard")
-	public String writeBoard(HttpServletRequest request, HttpSession session, MessageBoardVO messageBoardVO) {
+	public void writeBoard(HttpServletRequest request, HttpSession session, MessageBoardVO messageBoardVO) {
 		MemberVO member = (MemberVO) session.getAttribute("loginMember");
 		String content = request.getParameter("content");
 		content = content.replaceAll("&lt;", "<");
@@ -81,7 +81,6 @@ public class MessageBoardController {
 		messageBoardVO.setContent(content);
 		messageBoardVO.setUserID(member.getUserID());
 		messageBoardService.insertMessageBoard(messageBoardVO);
-		return "redirect:messageBoard";
 	}
 	
 	@PostMapping("deleteMessageBoard")

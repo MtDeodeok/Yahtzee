@@ -7,7 +7,7 @@
 	<!-- 유저 확인 -->
 	<select id="memberCheck" parameterType="com.project.yahtzee.vo.MemberVO" resultType="int">
 		select count(*) from member
-		where userEmail=#{userEmail} and userProvider=#{userProvider} and userState=0
+		where userEmail=#{userEmail} and userProvider=#{userProvider}
 	</select>
 	
 	<!-- 유저 ID 확인 -->
@@ -26,13 +26,13 @@
 	<!-- 유저 정보 -->
 	<select id="callMember" parameterType="com.project.yahtzee.vo.MemberVO" resultType="com.project.yahtzee.vo.MemberVO">
 		select * from member
-		WHERE userEmail = #{userEmail} and userName = #{userName} and userProvider = #{userProvider} and userState = 0
+		WHERE userEmail = #{userEmail} and userName = #{userName} and userProvider = #{userProvider}
 	</select>
 	
 	<update id="updateNickName" parameterType="com.project.yahtzee.vo.MemberVO">
 		update member
 		set userNickName = #{userNickName}
-		WHERE userEmail = #{userEmail} and userName = #{userName} and userProvider = #{userProvider} and userState = 0
+		WHERE userEmail = #{userEmail} and userName = #{userName} and userProvider = #{userProvider} 
 	</update>
 	
 	<!-- 유저 탈퇴 -->

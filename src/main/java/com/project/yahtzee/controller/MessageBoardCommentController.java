@@ -34,9 +34,11 @@ public class MessageBoardCommentController {
 	private final MessageBoardCommentService messageBoardCommentService;
 	
 	@PostMapping("writeBoardComment")
-	public String writeBoard(HttpServletRequest request, HttpSession session, MessageBoardCommentVO messageBoardCommentVO) {
+	public String writeBoard(HttpServletRequest request,HttpSession session, MessageBoardCommentVO messageBoardCommentVO) {
 		MemberVO member = (MemberVO) session.getAttribute("loginMember");
-		messageBoardCommentVO.setComment(request.getParameter("comment"));
+		String comment = request.getParameter("comment");
+		comment = comment.replaceAll("&lt;", "<");
+		comment = comment.replaceAll("&gt;", ">");
 		messageBoardCommentVO.setMessageBoardIdx(Integer.parseInt(request.getParameter("boardIdx")));
 		messageBoardCommentVO.setUserID(member.getUserID());
 		messageBoardCommentService.insertMessageBoardComment(messageBoardCommentVO);

@@ -142,13 +142,15 @@ function btnCreateRoomSubmit() {
     $.ajax({
         url: "/gameRoomCreate",
         type: "post",
+        dataType: 'json',
         data: {
             "gameRoomName": title,
         },
         success: function(response) {
+            console.log('## btnCreateRoomSubmit(): ', response);
             toggleDialog();
             dialogInit();
-			var href = response["returnUrl"];
+            var href = response["returnUrl"];
 			location.href = href;
         },
         error: function(e) {
@@ -156,7 +158,6 @@ function btnCreateRoomSubmit() {
             $('.gameRoomName-msg').html(`"${e.statusText}"<br/>방 생성에 실패하였습니다.`);
         },
         complete: function() {
-			
             console.log('## btnCreateRoomSubmit() complete');
         }
     });
