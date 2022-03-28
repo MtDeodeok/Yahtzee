@@ -45,7 +45,6 @@ $(document).ready(function() {
 		var totalPostDom = $("#messageBoardList").children().length;
 		var startNum = Number(totalPostDom);
 		var addListHtml = "";
-		console.log(startNum)
 
 		$.ajax({
 			url: "messageBoard",

@@ -36,16 +36,6 @@ public class MessageBoardController {
 	
 	@RequestMapping(value="messageBoard", method= RequestMethod.GET)
 	public void messageBoard(Model model, @RequestParam(defaultValue = "1") int page) {
-				
-//		// 총 게시물 수
-//		int totalListCnt = messageBoardService.messageBoardCount();
-//		// 생성인자로 총 게시물 수 , 현재 페이지 전달
-//		Pagination pagination = new Pagination(totalListCnt, page);
-//		model.addAttribute("pagination", pagination);
-		// DB select start index
-//		int startIndex = pagination.getStartIndex();
-		// 페이지당 보여지는 게시글 최대 개수
-//		int pageSize = pagination.getPageSize();
 		
 		int startIndex = 0;
 		int pageSize = 10;
