@@ -19,7 +19,6 @@ import lombok.RequiredArgsConstructor;
 public class MatchServiceImpl implements MatchService {
 	
 	private final MatchDAO matchDAO;
-	
 	String winTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 	
 	@Override
@@ -45,7 +44,6 @@ public class MatchServiceImpl implements MatchService {
 	@Override
 	public List<MatchVO> ranking() {
 		// TODO Auto-generated method stub
-		
 		return matchDAO.ranking();
 	}
 

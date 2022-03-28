@@ -14,7 +14,7 @@
 	
 	<!-- 랭킹 출력 -->
 	<select id="ranking" resultType="com.project.yahtzee.vo.MatchVO">
-		select @ranking:=@ranking+1 as userRanking, m.* , round((userWin / userScore) *100,1) as userWinningRate
+		select @ranking:=@ranking+1 as userRanking, m.*
 		from matchtable as m, (select @ranking:=0) TMP
 		order by userWin desc, userLose, userDraw, userScore desc, lastWinTime;
 	</select>

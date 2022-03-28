@@ -19,6 +19,7 @@ import com.project.yahtzee.util.chat.WebSocketHandler;
 import com.project.yahtzee.util.gameRoom.GameRoom;
 import com.project.yahtzee.util.gameRoom.GameUser;
 import com.project.yahtzee.util.gameRoom.RoomManager;
+import com.project.yahtzee.vo.MatchVO;
 import com.project.yahtzee.vo.MemberVO;
 import com.project.yahtzee.vo.MessageBoardVO;
 
@@ -37,7 +38,15 @@ public class PageController {
 	
 	@GetMapping("ranking")
 	public void ranking(Model model) {
-		model.addAttribute("ranking", matchservice.ranking());
+		List<MatchVO> list = matchservice.ranking();
+		System.out.println(list);
+		for(int i = 0;list.size()>i;i++) {
+			double win = list.get(i).getUserWin();
+			double score = list.get(i).getUserScore();
+			double winningRate = ((win/score)*100);
+			list.get(i).setUserWinningRate(Math.round(winningRate*100)/100.0);
+		}
+		model.addAttribute("ranking", list);
 	}
 	
 	@GetMapping(value = {"/","/login"})
