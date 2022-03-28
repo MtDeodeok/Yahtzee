@@ -21,7 +21,8 @@
                 <div class="search">
                     <input type="search" id="inquirySearchValue" /><button id="inquirySearch">검색</button>
                 </div>
-                <select name="" id="inquiry-filter">
+                <select id="inquiry-filter" onchange="stateSelect()">
+                	<option value="0">전체</option>
                     <option value="1">대기</option>
                     <option value="2">확인 중</option>
                     <option value="3">답변 완료</option>
@@ -42,13 +43,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:id="${boardList.idx}" th:each="boardList : ${inquiryBoardList}">
-                    <th:block th:switch="${boardList.state}">
-                    	<td th:case="1" >대기</td>
-                    	<td th:case="2" >확인 중</td>
-                    	<td th:case="3" >답변 완료</td>
-                    </th:block>
-                    	<td th:text="${boardList.title}"></td>
+                    <tr th:id="${boardList.idx}" th:each="boardList : ${inquiryBoardList}" 
+                    	th:classappend="${session.loginMember.userState}==1 ? ${boardList.stateName} ">
+	                    <th:block th:switch="${boardList.state}">
+	                    	<td th:case="1">대기</td>
+	                    	<td th:case="2">확인 중</td>
+	                    	<td th:case="3">답변 완료</td>
+	                    </th:block>
+                    	<td>
+                    		<a th:href="@{inquiryBoardView?idx={idx} (idx=${boardList.idx})}">
+                    			<span th:text="${boardList.title}"></span>
+                    		</a>
+                    	</td>
                     	<td th:text="${boardList.userID}"></td>
                     	<td th:if="${#strings.toString(boardList.writeDate)}==${#strings.toString(boardList.modifiyDate)}" th:text="${boardList.writeDate}"></td>
 						<td th:unless="${#strings.toString(boardList.writeDate)}==${#strings.toString(boardList.modifiyDate)}" th:text="${boardList.modifiyDate}"></td>
@@ -61,9 +67,7 @@
             </div>
             
             <div class="pagination">
-				<a th:href="@{inquiryBoard?page={page} (page = ${pagination.prevBlock})}" aria-label="Previous">
-					<span aria-hidden="true">&lt;</span>
-				</a>
+				<a th:href="@{inquiryBoard?page={page} (page = ${pagination.prevBlock})}">&lt;</a>
 				<th:block th:with="start = ${pagination.startPage}, end = ${pagination.endPage}">
 					<a th:with="start = ${pagination.startPage}, end = ${pagination.endPage}"
 						th:each="pageButton : ${#numbers.sequence(start, end)}" 
@@ -71,7 +75,7 @@
 						th:text="${pageButton}+' '">
 					 </a>
 				</th:block>
-				<a th:href="@{?page={page} (page = ${pagination.nextBlock})}" aria-label="Next">&gt;</a>
+				<a th:href="@{inquiryBoard?page={page} (page = ${pagination.nextBlock})}">&gt;</a>
 			</div>
 		</section>
 		<div th:replace="/common/footer :: footerFragment"></div>

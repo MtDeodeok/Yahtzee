@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.project.yahtzee.service.InquiryBoardCommentService;
 import com.project.yahtzee.service.InquiryBoardService;
 import com.project.yahtzee.service.MessageBoardCommentService;
 import com.project.yahtzee.service.MessageBoardService;
 import com.project.yahtzee.util.Pagination;
+import com.project.yahtzee.vo.InquiryBoardCommentVO;
 import com.project.yahtzee.vo.InquiryBoardVO;
 import com.project.yahtzee.vo.MemberVO;
 import com.project.yahtzee.vo.MessageBoardCommentVO;
@@ -33,42 +35,70 @@ import lombok.RequiredArgsConstructor;
 public class InquiryBoardController {
 
 	private final InquiryBoardService inquiryBoardService;
+	private final InquiryBoardCommentService inquiryBoardCommentService;
 	InquiryBoardVO inquiryBoardVO = new InquiryBoardVO();
+	InquiryBoardCommentVO inquiryBoardCommentVO = new InquiryBoardCommentVO();
 	
 	@RequestMapping(value="inquiryBoard", method= RequestMethod.GET)
-	public void inquiryBoard(Model model, @RequestParam(defaultValue = "1") int page) {
+	public void inquiryBoard(Model model,HttpSession session, @RequestParam(defaultValue = "1") int page) {
+		MemberVO memberVO = new MemberVO();
+		memberVO = (MemberVO) session.getAttribute("loginMember");
 				
 		// 총 게시물 수
-		int totalListCnt = inquiryBoardService.inquiryBoardCount();
+		int totalListCnt = inquiryBoardService.inquiryBoardCount(memberVO.getUserID());
 		// 생성인자로 총 게시물 수 , 현재 페이지 전달
 		Pagination pagination = new Pagination(totalListCnt, page);
-		
 		int startIndex = pagination.getStartIndex();
 		int pageSize = pagination.getPageSize();
 		
-		List<InquiryBoardVO> boardList = inquiryBoardService.findListPaging(startIndex, pageSize);
+		Map<String,Object> parameter = new HashMap<String, Object>();
+		parameter.put("startIndex",startIndex);
+		parameter.put("pageSize",pageSize);
+		parameter.put("userID",memberVO.getUserID()); 
+		
+		List<InquiryBoardVO> boardList = inquiryBoardService.findListPaging(parameter);
+		
+		for(int i=0;boardList.size()>i;i++) {
+			if(boardList.get(i).getState()==2) {
+				boardList.get(i).setStateName("check");
+			} else if(boardList.get(i).getState()==3) {
+				boardList.get(i).setStateName("CA");
+			} else {
+				boardList.get(i).setStateName("");
+			}
+		}
+		
 		model.addAttribute("inquiryBoardList", boardList);
 		model.addAttribute("pagination", pagination);
 	}
 	
-	@RequestMapping(value="inquiryBoardSearch", method= RequestMethod.GET)
-	public String inquiryBoardSearch(HttpServletRequest request, Model model, @RequestParam(defaultValue = "1") int page) {
-		String search = request.getParameter("search");
+	@GetMapping("inquiryBoardSearch")
+	public void inquiryBoardSearch() {
 		
-		int totalListCnt = inquiryBoardService.inquiryBoardCount();
+	}
+	
+	@RequestMapping(value="inquiryBoardSearch", method= RequestMethod.POST)
+	@ResponseBody
+	public JSONObject inquiryBoardSearch(HttpSession session, Model model, @RequestParam(defaultValue = "1") int page,@RequestParam("searchKeyword")String searchKeyword) {
+		int totalListCnt = inquiryBoardService.inquiryBoardSearchCount(searchKeyword);
 		Pagination pagination = new Pagination(totalListCnt, page);
-		
+		MemberVO member = (MemberVO) session.getAttribute("loginMember");
 		int startIndex = pagination.getStartIndex();
 		int pageSize = pagination.getPageSize();
-		Map<String,Object> parameter = new HashMap();
-		parameter.put("search", search);
+		Map<String,Object> parameter = new HashMap<String,Object>();
+		JSONObject inquiryData = new JSONObject();
+		
+		parameter.put("searchKeyword", searchKeyword);
 		parameter.put("startIndex", startIndex);
 		parameter.put("pageSize", pageSize);
+		//parameter.put("state", state);
 		
-		List<InquiryBoardVO> boardList = inquiryBoardService.searchInquiryList(parameter);
-		model.addAttribute("inquiryBoardList", boardList);
-		model.addAttribute("pagination", pagination);
-		return "inquiryBoard";
+		List<InquiryBoardVO> boardList = inquiryBoardService.inquiryListSearch(parameter);
+		inquiryData.put("inquiry", boardList);
+		inquiryData.put("loginUser", member);
+		inquiryData.put("pagination", pagination);
+		
+		return inquiryData;
 	}
 	
 	@GetMapping("inquiryBoardWrite")
@@ -94,19 +124,18 @@ public class InquiryBoardController {
 		inquiryBoardService.deleteInquiryBoard(idx);
 		return "inquiryBoard";
 	}
+	
 	@GetMapping("inquiryBoardView")
-	public void inquiryBoardView(Model model) {
-		model.addAttribute("inquiryDetails",inquiryBoardVO);
-		System.out.println(model.getAttribute("inquiryDetails"));
+	public void inquiryBoardView(Model model,@RequestParam(value="idx")String boardIdx) {
+		int idx = Integer.parseInt(boardIdx);
+		model.addAttribute("inquiryDetails",inquiryBoardService.viewInquiry(idx));
+		model.addAttribute("inquiryComment",inquiryBoardCommentService.InquiryBoardComment(idx));
 	}
 	
-	@RequestMapping(value="inquiryBoardView", method= RequestMethod.POST)
-	@ResponseBody
-	public JSONObject inquiryBoardView(@RequestParam(value="idx")String boardIdx) {
+	@PostMapping("inquiryBoardAdminCheck")
+	public void inquiryBoardAdminCheck(@RequestParam(value="idx")String boardIdx) {
 		int idx = Integer.parseInt(boardIdx);
-		inquiryBoardVO = inquiryBoardService.viewInquiry(idx);
-		JSONObject inquiryData = new JSONObject();
-		inquiryData.put("inquriry", inquiryBoardVO);
-		return inquiryData;
+		inquiryBoardService.inquiryBoardAdminCheck(idx);
+		
 	}
 }

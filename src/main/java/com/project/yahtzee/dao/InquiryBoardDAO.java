@@ -15,8 +15,14 @@ public interface InquiryBoardDAO {
 	void updateInquiryBoard(InquiryBoardVO inquiryBoardVO);
 	void deleteInquiryBoard(@Param("idx")int idx);
 	List<InquiryBoardVO> inquiryBoardList();
-	List<InquiryBoardVO> findListPaging(@Param("startIndex")int startIndex, @Param("pageSize")int pageSize);
-	List<InquiryBoardVO> searchInquiryList(Map<String,Object> parameter);
+	void inquiryBoardAdminCheck(@Param("idx")int idx);
+	void inquiryBoardRecommentUpdate(@Param("idx")int idx);
+	
+	int inquiryBoardCount(@Param("userID")String userID);
+	List<InquiryBoardVO> findListPaging(Map<String,Object> parameter);
+	
+	int inquiryBoardSearchCount(@Param("searchKeyword")String searchKeyword);
+	List<InquiryBoardVO> inquiryListSearch(Map<String,Object> parameter);
+	
 	InquiryBoardVO viewInquiry(@Param("idx")int idx);
-	int inquiryBoardCount();
 }

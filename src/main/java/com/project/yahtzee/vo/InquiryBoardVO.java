@@ -11,4 +11,5 @@ public class InquiryBoardVO {
 	String writeDate;
 	String modifiyDate;
 	int state;
+	String stateName;
 }

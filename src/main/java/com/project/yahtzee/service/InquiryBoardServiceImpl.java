@@ -40,11 +40,16 @@ public class InquiryBoardServiceImpl implements InquiryBoardService{
 	}
 
 	@Override
-	public List<InquiryBoardVO> findListPaging(int startIndex, int pageSize) {
+	public int inquiryBoardCount(String userID) {
 		// TODO Auto-generated method stub
-		return inquiryBoardDAO.findListPaging(startIndex, pageSize);
+		return inquiryBoardDAO.inquiryBoardCount(userID);
 	}
 	
+	@Override
+	public List<InquiryBoardVO> findListPaging(Map<String,Object> parameter) {
+		// TODO Auto-generated method stub
+		return inquiryBoardDAO.findListPaging(parameter);
+	}
 	
 	@Override
 	public List<InquiryBoardVO> inquiryBoardList() {
@@ -53,16 +58,16 @@ public class InquiryBoardServiceImpl implements InquiryBoardService{
 	}
 
 	@Override
-	public int inquiryBoardCount() {
+	public int inquiryBoardSearchCount(String search) {
 		// TODO Auto-generated method stub
-		return inquiryBoardDAO.inquiryBoardCount();
+		return inquiryBoardDAO.inquiryBoardSearchCount(search);
 	}
-
+	
 	@Override
-	public List<InquiryBoardVO> searchInquiryList(Map<String,Object> parameter) {
+	public List<InquiryBoardVO> inquiryListSearch(Map<String,Object> parameter) {
 		// TODO Auto-generated method stub
 		
-		return inquiryBoardDAO.searchInquiryList(parameter);
+		return inquiryBoardDAO.inquiryListSearch(parameter);
 	}
 
 	@Override
@@ -71,5 +76,16 @@ public class InquiryBoardServiceImpl implements InquiryBoardService{
 		return inquiryBoardDAO.viewInquiry(idx);
 	}
 
+	@Override
+	public void inquiryBoardAdminCheck(int idx) {
+		// TODO Auto-generated method stub
+		inquiryBoardDAO.inquiryBoardAdminCheck(idx);
+	}
+
+	@Override
+	public void inquiryBoardRecommentUpdate(int idx) {
+		// TODO Auto-generated method stub
+		inquiryBoardDAO.inquiryBoardRecommentUpdate(idx);
+	}
 	
 }

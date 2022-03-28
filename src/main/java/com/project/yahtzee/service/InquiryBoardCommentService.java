@@ -12,5 +12,5 @@ public interface InquiryBoardCommentService {
 	void insertInquiryBoardComment(InquiryBoardCommentVO inquiryBoardCommentVO);
 	void updateInquiryBoardComment(InquiryBoardCommentVO inquiryBoardCommentVO);
 	void deleteInquiryBoardComment(int idx);
-	InquiryBoardVO InquiryBoardComment(int idx);
+	List<InquiryBoardCommentVO> InquiryBoardComment(int idx);
 }

@@ -6,7 +6,6 @@ import lombok.Data;
 public class InquiryBoardCommentVO {
 	int idx;
 	int boardIdx;
-	int boardState;
 	String comment;
 	String writeDate;
 }

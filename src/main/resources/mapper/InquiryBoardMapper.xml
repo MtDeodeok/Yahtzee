@@ -2,32 +2,77 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-<mapper namespace="com.project.yahtzee.dao.InquiryBoardCommentDAO">
+<mapper namespace="com.project.yahtzee.dao.InquiryBoardDAO">
 	
-	<!-- 신규 답글 -->
-	<insert id="insertInquiryBoard" parameterType="com.project.yahtzee.vo.InquiryBoardCommentVO">
+	<!-- 신규 게시글 -->
+	<insert id="insertInquiryBoard" parameterType="com.project.yahtzee.vo.InquiryBoardVO">
 		insert into
-		inquiryboardcomment(boardIdx, comment, writeDate)
-		values (#{boardIdx}, #{comment}, #{writeDate})
+		inquiryboard(title,userID, content, writeDate,modifiyDate)
+		values (#{title}, #{userID}, #{content}, #{writeDate},#{writeDate})
 	</insert>
+	
+	<!-- 게시글 10개 리스트 출력 -->
+	<select id="findListPaging" parameterType="hashMap" resultType="com.project.yahtzee.vo.InquiryBoardVO">
+		select * 
+		from inquiryboard
+		where userID = #{userID} or (select userState from yahtzee.member where userID=#{userID})=1
+		order by idx desc, writeDate desc
+		limit #{startIndex},#{pageSize};
+	</select>
 
-	<!-- 답글 업데이트 -->
-	<update id="updateInquiryBoard" parameterType="com.project.yahtzee.vo.InquiryBoardCommentVO">
-		update inquiryboardcomment
+	<!-- 게시글 총개수 -->
+	<select id="inquiryBoardCount" resultType="int">
+		select count(*)
+		from inquiryboard
+		where (select userState from member where userID=#{userID})=1 or userID = #{userID} 
+	</select>
+
+	<!-- 게시글 업데이트 -->
+	<update id="updateInquiryBoard" parameterType="com.project.yahtzee.vo.InquiryBoardVO">
+		update inquiryboard
 		set content=#{content}, modifiyDate=#{modifiyDate} 
 		where idx = #{idx} and userID = #{userID}
 	</update>
 	
-	<!-- 답글 삭제 -->
+	<!-- 게시글 관리자 확인 업데이트 -->
+	<update id="inquiryBoardAdminCheck" parameterType="int">
+		update inquiryboard
+		set state=2 
+		where idx = #{idx}
+	</update>
+	
+	<!-- 게시글 관리자 답변 업데이트 -->
+	<update id="inquiryBoardRecommentUpdate" parameterType="int">
+		update inquiryboard
+		set state=3 
+		where idx = #{idx}
+	</update>
+	
+	<!-- 게시글 삭제 -->
 	<delete id="deleteInquiryBoard" parameterType="int">
-		delete from inquiryboardcomment where idx=#{idx}
+		delete from inquiryboard where idx=#{idx}
 	</delete>
-		
-	<!-- 답글 상세 -->
-	<select id="viewInquiry" parameterType="int" resultType="com.project.yahtzee.vo.InquiryBoardCommentVO">
+	
+	<!-- 게시글 검색 리스트 -->
+	<select id="inquiryListSearch" parameterType="hashMap" resultType="com.project.yahtzee.vo.InquiryBoardVO">
 		select * 
-		from inquiryboardcomment
+		from inquiryboard
+		where content like concat('%',#{searchKeyword},'%') or state=#{state}
+		order by idx desc, writeDate desc
+		limit #{startIndex},#{pageSize}
+	</select>
+	
+	<!-- 게시글 찾은 총개수 -->
+	<select id="inquiryBoardSearchCount" parameterType="String" resultType="int">
+		select count(*)
+		from inquiryboard
+		where content like concat('%',#{searchKeyword},'%')
+	</select>
+	
+	<!-- 게시글 상세 -->
+	<select id="viewInquiry" parameterType="int" resultType="com.project.yahtzee.vo.InquiryBoardVO">
+		select * 
+		from inquiryboard
 		where idx=#{idx}
 	</select>
 </mapper>

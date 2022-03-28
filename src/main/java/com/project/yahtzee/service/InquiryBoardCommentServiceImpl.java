@@ -2,6 +2,7 @@ package com.project.yahtzee.service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -35,7 +36,7 @@ public class InquiryBoardCommentServiceImpl implements InquiryBoardCommentServic
 	}
 
 	@Override
-	public InquiryBoardVO InquiryBoardComment(int idx) {
+	public List<InquiryBoardCommentVO> InquiryBoardComment(int idx) {
 		return inquiryBoardCommentDAO.InquiryBoardComment(idx);
 	}
 	
