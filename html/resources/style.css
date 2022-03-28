@@ -606,7 +606,7 @@ div, a, input, textarea, button {
   padding-top: 20px;
   border-top: 2px dashed #fff;
 }
-.inquiry.view .answer div:first-child {
+.inquiry.view .answer > div:first-child {
   margin-bottom: 20px;
 }
 .inquiry.view .answer .editor {
