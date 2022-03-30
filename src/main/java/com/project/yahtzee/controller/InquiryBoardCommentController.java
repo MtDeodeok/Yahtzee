@@ -45,14 +45,12 @@ public class InquiryBoardCommentController {
 		comment = comment.replaceAll("&lt;", "<");
 		comment = comment.replaceAll("&gt;", ">");
 		
-		System.out.println("comment");
 		inquiryBoardCommentVO.setComment(comment);
 		inquiryBoardCommentVO.setBoardIdx(idx);
 		
 		inquiryBoardCommentService.insertInquiryBoardComment(inquiryBoardCommentVO);
 		inquiryBoardService.inquiryBoardRecommentUpdate(idx);
 		List<InquiryBoardCommentVO> commentList = inquiryBoardCommentService.InquiryBoardComment(idx);
-		System.out.println(commentList);
 		JSONObject recomment = new JSONObject();
 		recomment.put("recomment", commentList);
 		

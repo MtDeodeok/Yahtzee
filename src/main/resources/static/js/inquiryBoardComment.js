@@ -33,11 +33,10 @@ $(document).ready(function() {
 	// 문의게시판 답변하기 버튼
 	$("#recomment").click(function() {
 		console.log("클릭함");
-		var addListHtml = "";
+		
 		$.ajax({
 			url: "inquiryBoardRecomment",
 			type: "post",
-			dataType:"json",
 			data: {
 				idx : $("#boardIdx").text(),
 				comment: editor.getData()
@@ -45,19 +44,22 @@ $(document).ready(function() {
 			success: function(response) {
 				console.log("정상");
 				console.log(response);
-				for (var i = 0; i < response["recomment"].length; i++) {
-					addListHtml += "<div class='title'>";
-					addListHtml += "<h1>답변</h1>";
-					addListHtml += "</div>";
-					addListHtml += "<div class='comment'>"+response[recomment][i].comment+"</div>";
+				const recomment = response.recomment;
+				if(recomment.length>0){
+					var addListHtml = "";
+					$("#commentArea").empty();
+					for (var i = 0; i < recomment.length; i++) {
+						var comment = recomment[i].comment;
+						addListHtml += '<div class="title">';
+						addListHtml += '<h1>답변</h1></div>';
+						addListHtml += '<div class="comment">'+comment+'</div>';
+					}
+				$("#commentArea").append(addListHtml);
 				}
-				$("#inquiry-body").append(addListHtml);
 			},
 			error: function() {
 				console.log("error");
 			}
-		});
+		})
 	});
-	
 })
-

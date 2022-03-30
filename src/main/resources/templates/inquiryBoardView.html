@@ -22,12 +22,12 @@
                 <div class="content" th:text="${inquiryDetails.content}"></div>
             </div>
             
-            <div id="recomment" th:if="${inquiryComment != null and inquiryComment != ''}">
+            <div id="commentArea" th:if="${inquiryComment != null and inquiryComment != ''}">
             	<div class="inquiry-body" th:each="commentList : ${inquiryComment}">
 		            <div class="title" >
 						<h1>답변</h1>
 					</div>
-           			<div class="comment" th:text="${commentList.comment}"></div>
+           			<div class="comment">[[${commentList.comment}]]</div>
             	</div>
             </div>
 			<div id="noneRecomment" th:unless="${inquiryComment != null and inquiryComment != ''}"></div>

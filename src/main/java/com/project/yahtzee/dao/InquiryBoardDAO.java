@@ -21,8 +21,11 @@ public interface InquiryBoardDAO {
 	int inquiryBoardCount(@Param("userID")String userID);
 	List<InquiryBoardVO> findListPaging(Map<String,Object> parameter);
 	
-	int inquiryBoardSearchCount(@Param("searchKeyword")String searchKeyword);
-	List<InquiryBoardVO> inquiryListSearch(Map<String,Object> parameter);
+	int inquiryBoardSearchKeywordCount(@Param("searchKeyword")String searchKeyword);
+	List<InquiryBoardVO> inquiryListSearchKeyword(Map<String,Object> parameter);
+	
+	int inquiryBoardSearchStateCount(@Param("searchState")int searchState);
+	List<InquiryBoardVO> inquiryListSearchState(Map<String,Object> parameter);
 	
 	InquiryBoardVO viewInquiry(@Param("idx")int idx);
 }

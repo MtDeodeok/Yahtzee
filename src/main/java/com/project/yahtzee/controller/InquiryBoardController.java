@@ -1,5 +1,6 @@
 package com.project.yahtzee.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -77,10 +78,10 @@ public class InquiryBoardController {
 		
 	}
 	
-	@RequestMapping(value="inquiryBoardSearch", method= RequestMethod.POST)
+	@RequestMapping(value="inquiryBoardSearchKeyword", method= RequestMethod.POST)
 	@ResponseBody
-	public JSONObject inquiryBoardSearch(HttpSession session, Model model, @RequestParam(defaultValue = "1") int page,@RequestParam("searchKeyword")String searchKeyword) {
-		int totalListCnt = inquiryBoardService.inquiryBoardSearchCount(searchKeyword);
+	public JSONObject inquiryBoardSearchKeyword(HttpSession session, Model model, @RequestParam(defaultValue = "1") int page,@RequestParam("searchKeyword")String searchKeyword) {
+		int totalListCnt = inquiryBoardService.inquiryBoardSearchKeywordCount(searchKeyword);
 		Pagination pagination = new Pagination(totalListCnt, page);
 		MemberVO member = (MemberVO) session.getAttribute("loginMember");
 		int startIndex = pagination.getStartIndex();
@@ -91,15 +92,42 @@ public class InquiryBoardController {
 		parameter.put("searchKeyword", searchKeyword);
 		parameter.put("startIndex", startIndex);
 		parameter.put("pageSize", pageSize);
-		//parameter.put("state", state);
 		
-		List<InquiryBoardVO> boardList = inquiryBoardService.inquiryListSearch(parameter);
+		
+		List<InquiryBoardVO> boardList = inquiryBoardService.inquiryListSearchKeyword(parameter);
 		inquiryData.put("inquiry", boardList);
 		inquiryData.put("loginUser", member);
 		inquiryData.put("pagination", pagination);
 		
 		return inquiryData;
 	}
+	
+	@RequestMapping(value="inquiryBoardSearchState", method= RequestMethod.POST)
+	@ResponseBody
+	public JSONObject inquiryBoardSearchState(HttpSession session, Model model, @RequestParam(defaultValue = "1") int page,@RequestParam("searchState")String searchState) {
+		int stateParseInt = Integer.parseInt(searchState);
+		int totalListCnt = inquiryBoardService.inquiryBoardSearchStateCount(stateParseInt);
+		Pagination pagination = new Pagination(totalListCnt, page);
+		MemberVO member = (MemberVO) session.getAttribute("loginMember");
+		int startIndex = pagination.getStartIndex();
+		int pageSize = pagination.getPageSize();
+		Map<String,Object> parameter = new HashMap<String,Object>();
+		JSONObject inquiryData = new JSONObject();
+		
+		parameter.put("startIndex", startIndex);
+		parameter.put("pageSize", pageSize);
+		parameter.put("searchState", stateParseInt);
+
+		List<InquiryBoardVO> boardList = new ArrayList<InquiryBoardVO>();
+		boardList = inquiryBoardService.inquiryListSearchState(parameter);
+		
+		inquiryData.put("inquiry", boardList);
+		inquiryData.put("loginUser", member);
+		inquiryData.put("pagination", pagination);
+		
+		return inquiryData;
+	}
+	
 	
 	@GetMapping("inquiryBoardWrite")
 	public void inquiryBoardWrite() {

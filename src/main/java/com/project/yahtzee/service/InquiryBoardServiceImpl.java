@@ -58,16 +58,16 @@ public class InquiryBoardServiceImpl implements InquiryBoardService{
 	}
 
 	@Override
-	public int inquiryBoardSearchCount(String search) {
+	public int inquiryBoardSearchKeywordCount(String search) {
 		// TODO Auto-generated method stub
-		return inquiryBoardDAO.inquiryBoardSearchCount(search);
+		return inquiryBoardDAO.inquiryBoardSearchKeywordCount(search);
 	}
 	
 	@Override
-	public List<InquiryBoardVO> inquiryListSearch(Map<String,Object> parameter) {
+	public List<InquiryBoardVO> inquiryListSearchKeyword(Map<String,Object> parameter) {
 		// TODO Auto-generated method stub
 		
-		return inquiryBoardDAO.inquiryListSearch(parameter);
+		return inquiryBoardDAO.inquiryListSearchKeyword(parameter);
 	}
 
 	@Override
@@ -86,6 +86,18 @@ public class InquiryBoardServiceImpl implements InquiryBoardService{
 	public void inquiryBoardRecommentUpdate(int idx) {
 		// TODO Auto-generated method stub
 		inquiryBoardDAO.inquiryBoardRecommentUpdate(idx);
+	}
+
+	@Override
+	public int inquiryBoardSearchStateCount(int searchState) {
+		// TODO Auto-generated method stub
+		return inquiryBoardDAO.inquiryBoardSearchStateCount(searchState);
+	}
+
+	@Override
+	public List<InquiryBoardVO> inquiryListSearchState(Map<String, Object> parameter) {
+		// TODO Auto-generated method stub
+		return inquiryBoardDAO.inquiryListSearchState(parameter);
 	}
 	
 }

@@ -18,8 +18,11 @@ public interface InquiryBoardService {
 	int inquiryBoardCount(String userID);
 	List<InquiryBoardVO> findListPaging(Map<String,Object> parameter);
 	
-	int inquiryBoardSearchCount(String searchKeyword);
-	List<InquiryBoardVO> inquiryListSearch(Map<String,Object> parameter);
+	int inquiryBoardSearchKeywordCount(String searchKeyword);
+	List<InquiryBoardVO> inquiryListSearchKeyword(Map<String,Object> parameter);
+
+	int inquiryBoardSearchStateCount(int searchState);
+	List<InquiryBoardVO> inquiryListSearchState(Map<String,Object> parameter);
 	
 	InquiryBoardVO viewInquiry(int idx);
 }
